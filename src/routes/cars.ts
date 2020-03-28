@@ -1,6 +1,7 @@
 import TempPage from "../pages/TempPage";
 import { IRoute } from "./index";
 import lang from "../lang";
+import CarIndexPage from "../pages/admin/cars";
 
 export enum CAR_ROUTES {
   INDEX = "/admin/car",
@@ -13,7 +14,7 @@ export enum CAR_ROUTES {
 const routes: IRoute[] = [
   {
     path: CAR_ROUTES.INDEX,
-    component: TempPage,
+    component: CarIndexPage,
     meta: {
       breadcrumb: [
         { text: lang("admin.title"), href: "#" },
