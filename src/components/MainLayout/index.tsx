@@ -5,8 +5,6 @@ import Container from "@material-ui/core/Container";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Link from "@material-ui/core/Link";
-import Icon from "@material-ui/core/Icon";
-import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
 import styles from "./styles";
 import lang from "../../lang";
@@ -35,19 +33,20 @@ export default function StickyFooter() {
       <CssBaseline />
       <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start" color="inherit" aria-label="menu" />
-          <Typography variant="h6">{lang("general.appName")}</Typography>
+          <Typography variant="h6" className={classes.title}>
+            {lang("general.appName")}
+          </Typography>
+          <Button color="inherit">Ofertas</Button>
+          <Button color="inherit">Administração</Button>
         </Toolbar>
       </AppBar>
       <Container component="main" className={classes.main} maxWidth="sm">
         <Typography variant="h2" component="h1" gutterBottom>
-          Sticky footer
+          {lang("general.appName")}
         </Typography>
         <Typography variant="h5" component="h2" gutterBottom>
-          Pin a footer to the bottom of the viewport. The footer will move as
-          the main element of the page grows.
+          ~&gt; TODO the home page.
         </Typography>
-        <Typography variant="body1">Sticky footer placeholder.</Typography>
       </Container>
       <footer className={classes.footer}>
         <Container maxWidth="sm">
