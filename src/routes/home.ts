@@ -1,5 +1,6 @@
 import TempPage from "../pages/TempPage";
 import { IRoute } from "./index";
+import lang from "../lang";
 
 export enum HOME_ROUTES {
   INDEX = "/home",
@@ -11,7 +12,7 @@ const routes: IRoute[] = [
     path: HOME_ROUTES.INDEX,
     component: TempPage,
     meta: {
-      breadcrumb: [{ text: "Ofertas", active: true }]
+      breadcrumb: [{ text: lang("home.title"), active: true }]
     }
   },
   {
@@ -19,8 +20,8 @@ const routes: IRoute[] = [
     component: TempPage,
     meta: {
       breadcrumb: [
-        { text: "Ofertas", href: "#" },
-        { text: "Detalhes Oferta", active: true }
+        { text: lang("home.title"), href: "#" },
+        { text: lang("home.detailsTitle"), active: true }
       ]
     }
   }

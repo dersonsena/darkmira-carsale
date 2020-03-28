@@ -9,7 +9,7 @@ import Button from "@material-ui/core/Button";
 import { Link as RouteLink, Switch, Route } from "react-router-dom";
 import styles from "./styles";
 import lang from "../../lang";
-import routes from "../../routes";
+import routes, { IRoute } from "../../routes";
 import { HOME_ROUTES } from "../../routes/home";
 import { CAR_ROUTES } from "../../routes/cars";
 
@@ -41,18 +41,22 @@ export default function StickyFooter() {
             {lang("general.appName")}
           </Typography>
           <Button color="inherit">
-            <RouteLink to={HOME_ROUTES.INDEX}>Ofertas</RouteLink>
+            <RouteLink to={HOME_ROUTES.INDEX}>
+              {lang("general.offerMenu")}
+            </RouteLink>
           </Button>
           <Button color="inherit">
-            <RouteLink to={CAR_ROUTES.INDEX}>Administração</RouteLink>
+            <RouteLink to={CAR_ROUTES.INDEX}>
+              {lang("general.adminMenu")}
+            </RouteLink>
           </Button>
         </Toolbar>
       </AppBar>
       <Container component="main" className={classes.main} maxWidth="sm">
         <Switch>
-          {routes.map((route, i) => (
+          {routes.map((route: IRoute) => (
             <Route
-              key={i}
+              key={route.path}
               path={route.path}
               exact
               render={(props: any) => (

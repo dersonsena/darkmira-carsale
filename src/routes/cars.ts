@@ -1,5 +1,6 @@
 import TempPage from "../pages/TempPage";
 import { IRoute } from "./index";
+import lang from "../lang";
 
 export enum CAR_ROUTES {
   INDEX = "/admin/car",
@@ -15,9 +16,9 @@ const routes: IRoute[] = [
     component: TempPage,
     meta: {
       breadcrumb: [
-        { text: "Administração", href: "#" },
-        { text: "Oferta de Carros", href: "#" },
-        { text: "Consulta", active: true }
+        { text: lang("admin.title"), href: "#" },
+        { text: lang("cars.title"), href: "#" },
+        { text: lang("general.gridTitle"), active: true }
       ]
     }
   },
@@ -26,9 +27,9 @@ const routes: IRoute[] = [
     component: TempPage,
     meta: {
       breadcrumb: [
-        { text: "Administração", href: "#" },
-        { text: "Oferta de Carros", href: "#" },
-        { text: "Cadastro", active: true }
+        { text: lang("admin.title"), href: "#" },
+        { text: lang("cars.title"), href: "#" },
+        { text: lang("general.addTitle"), active: true }
       ]
     }
   },
@@ -37,20 +38,25 @@ const routes: IRoute[] = [
     component: TempPage,
     meta: {
       breadcrumb: [
-        { text: "Administração", href: "#" },
-        { text: "Oferta de Carros", href: "#" },
-        { text: "Edição", active: true }
+        { text: lang("admin.title"), href: "#" },
+        { text: lang("cars.title"), href: "#" },
+        { text: lang("general.updateTitle"), active: true }
       ]
     }
+  },
+  {
+    path: CAR_ROUTES.DELETE,
+    component: TempPage,
+    meta: {}
   },
   {
     path: CAR_ROUTES.SHOW,
     component: TempPage,
     meta: {
       breadcrumb: [
-        { text: "Administração", href: "#" },
-        { text: "Oferta de Carros", href: "#" },
-        { text: "Ficha da Oferta", active: true }
+        { text: lang("admin.title"), href: "#" },
+        { text: lang("cars.title"), href: "#" },
+        { text: lang("cars.showTitle"), active: true }
       ]
     }
   }
