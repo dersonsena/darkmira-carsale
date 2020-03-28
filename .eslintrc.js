@@ -36,6 +36,8 @@ module.exports = {
     "react/no-unused-prop-types": ["warn"],
     "react/jsx-boolean-value": "off",
     "react/forbid-prop-types": "off",
+    "react/prop-types": "off",
+    "react/destructuring-assignment": "off",
     "import/prefer-default-export": "off",
     "import/extensions": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
