@@ -6,8 +6,12 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Link from "@material-ui/core/Link";
 import Button from "@material-ui/core/Button";
+import { Link as RouteLink, Switch, Route } from "react-router-dom";
 import styles from "./styles";
 import lang from "../../lang";
+import routes from "../../routes";
+import { HOME_ROUTES } from "../../routes/home";
+import { CAR_ROUTES } from "../../routes/cars";
 
 const Copyright = () => {
   return (
@@ -36,17 +40,27 @@ export default function StickyFooter() {
           <Typography variant="h6" className={classes.title}>
             {lang("general.appName")}
           </Typography>
-          <Button color="inherit">Ofertas</Button>
-          <Button color="inherit">Administração</Button>
+          <Button color="inherit">
+            <RouteLink to={HOME_ROUTES.INDEX}>Ofertas</RouteLink>
+          </Button>
+          <Button color="inherit">
+            <RouteLink to={CAR_ROUTES.INDEX}>Administração</RouteLink>
+          </Button>
         </Toolbar>
       </AppBar>
       <Container component="main" className={classes.main} maxWidth="sm">
-        <Typography variant="h2" component="h1" gutterBottom>
-          {lang("general.appName")}
-        </Typography>
-        <Typography variant="h5" component="h2" gutterBottom>
-          ~&gt; TODO the home page.
-        </Typography>
+        <Switch>
+          {routes.map((route, i) => (
+            <Route
+              key={i}
+              path={route.path}
+              exact
+              render={(props: any) => (
+                <route.component {...props} meta={route.meta} />
+              )}
+            />
+          ))}
+        </Switch>
       </Container>
       <footer className={classes.footer}>
         <Container maxWidth="sm">
