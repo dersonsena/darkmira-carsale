@@ -40,15 +40,11 @@ export default function StickyFooter() {
           <Typography variant="h6" className={classes.title}>
             {lang("general.appName")}
           </Typography>
-          <Button color="inherit">
-            <RouteLink to={HOME_ROUTES.INDEX}>
-              {lang("general.offerMenu")}
-            </RouteLink>
+          <Button color="inherit" component={RouteLink} to={HOME_ROUTES.INDEX}>
+            {lang("general.offerMenu")}
           </Button>
-          <Button color="inherit">
-            <RouteLink to={CAR_ROUTES.INDEX}>
-              {lang("general.adminMenu")}
-            </RouteLink>
+          <Button color="inherit" component={RouteLink} to={CAR_ROUTES.INDEX}>
+            {lang("general.adminMenu")}
           </Button>
         </Toolbar>
       </AppBar>
