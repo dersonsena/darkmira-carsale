@@ -48,7 +48,7 @@ export default function StickyFooter() {
           </Button>
         </Toolbar>
       </AppBar>
-      <Container component="main" className={classes.main} maxWidth="sm">
+      <Container component="main" className={classes.main} maxWidth="lg">
         <Switch>
           {routes.map((route: IRoute) => (
             <Route
