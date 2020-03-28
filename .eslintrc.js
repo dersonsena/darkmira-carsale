@@ -40,7 +40,9 @@ module.exports = {
     "import/extensions": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/explicit-member-accessibility": "off",
-    "import/no-cycle": "off"
+    "@typescript-eslint/interface-name-prefix": "off",
+    "import/no-cycle": "off",
+    "class-methods-use-this": ["warn"]
   },
   settings: {
     "import/parsers": {
