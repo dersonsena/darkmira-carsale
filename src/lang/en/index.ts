@@ -16,6 +16,13 @@ export default {
   },
   cars: {
     title: "Car Offers",
-    showTitle: "Offer Form"
+    showTitle: "Offer Form",
+    grid: {
+      model: "Model",
+      description: "Description",
+      brand: "Brand",
+      year: "Year",
+      color: "Color"
+    }
   }
 };
