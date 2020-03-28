@@ -1,12 +1,8 @@
 import React from "react";
-import lang from "./lang";
+import MainLayout from "./components/MainLayout";
 
 function App() {
-  return (
-    <div className="App">
-      <h1>{lang("general.homeText")}</h1>
-    </div>
-  );
+  return <MainLayout />;
 }
 
 export default App;
