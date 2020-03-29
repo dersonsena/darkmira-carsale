@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
+import Button from "@material-ui/core/Button";
+import AddCircle from "@material-ui/icons/AddCircle";
 import styles from "./styles";
 import CarsGrid from "../../../domains/car/components/CarsGrid";
 import ICar from "../../../domains/car/ICar";
@@ -9,6 +11,7 @@ import { muiDatatablesColumns, muiDatatablesOptions } from "./config";
 import lang from "../../../lang";
 import CarService from "../../../domains/car/CarService";
 import Breadcrumb from "../../../components/Breadcrumb";
+import { CAR_ROUTES } from "../../../routes/cars";
 
 const CarIndexPage = (props: any) => {
   const classes = styles();
@@ -27,6 +30,16 @@ const CarIndexPage = (props: any) => {
   return (
     <Container maxWidth="lg" className={classes.container}>
       <Breadcrumb data={props.meta.breadcrumb} />
+      <Button
+        variant="contained"
+        color="primary"
+        className={classes.addButon}
+        size="large"
+        onClick={() => props.history.push(CAR_ROUTES.CREATE)}
+        startIcon={<AddCircle />}
+      >
+        Novo Carro
+      </Button>
       <Grid container spacing={2}>
         <Grid item xs={12} md={12} lg={12}>
           <Paper className={classes.paper}>
