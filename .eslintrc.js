@@ -44,7 +44,8 @@ module.exports = {
     "@typescript-eslint/explicit-member-accessibility": "off",
     "@typescript-eslint/interface-name-prefix": "off",
     "import/no-cycle": "off",
-    "class-methods-use-this": ["warn"]
+    "class-methods-use-this": ["warn"],
+    "react/no-array-index-key": ["warn"]
   },
   settings: {
     "import/parsers": {
