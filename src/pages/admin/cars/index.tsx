@@ -29,7 +29,7 @@ const CarIndexPage = (props: any) => {
       <Breadcrumb data={props.meta.breadcrumb} />
       <Grid container spacing={2}>
         <Grid item xs={12} md={12} lg={12}>
-          <Paper>
+          <Paper className={classes.paper}>
             <CarsGrid
               rows={rows}
               title={lang("cars.title")}
