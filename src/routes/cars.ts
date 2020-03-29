@@ -17,9 +17,9 @@ const routes: IRoute[] = [
     component: CarIndexPage,
     meta: {
       breadcrumb: [
-        { text: lang("admin.title"), href: "#" },
-        { text: lang("cars.title"), href: "#" },
-        { text: lang("general.gridTitle"), active: true }
+        { text: lang("admin.title"), to: CAR_ROUTES.INDEX },
+        { text: lang("cars.title"), to: CAR_ROUTES.INDEX },
+        { text: lang("general.gridTitle"), to: null }
       ]
     }
   },
@@ -28,9 +28,9 @@ const routes: IRoute[] = [
     component: TempPage,
     meta: {
       breadcrumb: [
-        { text: lang("admin.title"), href: "#" },
-        { text: lang("cars.title"), href: "#" },
-        { text: lang("general.addTitle"), active: true }
+        { text: lang("admin.title"), to: CAR_ROUTES.INDEX },
+        { text: lang("cars.title"), to: CAR_ROUTES.INDEX },
+        { text: lang("general.addTitle"), to: null }
       ]
     }
   },
@@ -39,9 +39,9 @@ const routes: IRoute[] = [
     component: TempPage,
     meta: {
       breadcrumb: [
-        { text: lang("admin.title"), href: "#" },
-        { text: lang("cars.title"), href: "#" },
-        { text: lang("general.updateTitle"), active: true }
+        { text: lang("admin.title"), to: CAR_ROUTES.INDEX },
+        { text: lang("cars.title"), to: CAR_ROUTES.INDEX },
+        { text: lang("general.updateTitle"), to: null }
       ]
     }
   },
@@ -55,9 +55,9 @@ const routes: IRoute[] = [
     component: TempPage,
     meta: {
       breadcrumb: [
-        { text: lang("admin.title"), href: "#" },
-        { text: lang("cars.title"), href: "#" },
-        { text: lang("cars.showTitle"), active: true }
+        { text: lang("admin.title"), to: CAR_ROUTES.INDEX },
+        { text: lang("cars.title"), to: CAR_ROUTES.INDEX },
+        { text: lang("cars.showTitle"), to: null }
       ]
     }
   }

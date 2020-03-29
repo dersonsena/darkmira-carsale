@@ -12,7 +12,7 @@ const routes: IRoute[] = [
     path: HOME_ROUTES.INDEX,
     component: TempPage,
     meta: {
-      breadcrumb: [{ text: lang("home.title"), active: true }]
+      breadcrumb: [{ text: lang("home.title"), to: null }]
     }
   },
   {
@@ -20,8 +20,8 @@ const routes: IRoute[] = [
     component: TempPage,
     meta: {
       breadcrumb: [
-        { text: lang("home.title"), href: "#" },
-        { text: lang("home.detailsTitle"), active: true }
+        { text: lang("home.title"), to: HOME_ROUTES.INDEX },
+        { text: lang("home.detailsTitle"), to: null }
       ]
     }
   }
