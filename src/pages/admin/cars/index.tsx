@@ -8,8 +8,9 @@ import ICar from "../../../domains/car/ICar";
 import { muiDatatablesColumns, muiDatatablesOptions } from "./config";
 import lang from "../../../lang";
 import CarService from "../../../domains/car/CarService";
+import Breadcrumb from "../../../components/Breadcrumb";
 
-const CarIndexPage = () => {
+const CarIndexPage = (props: any) => {
   const classes = styles();
   const [rows, setRows] = useState<ICar[]>([]);
   const [loading, setLoading] = useState(false);
@@ -25,6 +26,7 @@ const CarIndexPage = () => {
 
   return (
     <Container maxWidth="lg" className={classes.container}>
+      <Breadcrumb data={props.meta.breadcrumb} />
       <Grid container spacing={2}>
         <Grid item xs={12} md={12} lg={12}>
           <Paper>
@@ -41,5 +43,9 @@ const CarIndexPage = () => {
     </Container>
   );
 };
+
+interface IProps {
+  meta: any;
+}
 
 export default CarIndexPage;

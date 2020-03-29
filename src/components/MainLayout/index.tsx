@@ -29,7 +29,7 @@ const Copyright = () => {
   );
 };
 
-export default function StickyFooter() {
+const MainLayout = () => {
   const classes = styles();
 
   return (
@@ -69,4 +69,6 @@ export default function StickyFooter() {
       </footer>
     </div>
   );
-}
+};
+
+export default MainLayout;
