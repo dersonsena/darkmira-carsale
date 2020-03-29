@@ -27,6 +27,7 @@ module.exports = {
   rules: {
     "global-require": "off",
     "no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
+    "prefer-destructuring": "off",
     "react/jsx-filename-extension": [
       "error",
       {
