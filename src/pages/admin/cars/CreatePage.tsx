@@ -4,9 +4,6 @@ import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import SaveIcon from "@material-ui/icons/Save";
 import { CircularProgress, Backdrop } from "@material-ui/core";
@@ -26,11 +23,11 @@ import IModel from "../../../domains/model/IModel";
 const CreatePage = (props: any) => {
   const classes = styles();
   const [fields, setFields] = useState<ICarFields>(initialFields);
-  const [loading, setLoading] = useState(false);
   const [brands, setBrands] = useState<IBrand[]>([]);
   const [models, setModels] = useState<IModel[]>([]);
   const [colors, setColors] = useState<IColor[]>([]);
   const [cities, setCities] = useState<ICity[]>([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const promises = [
@@ -108,18 +105,18 @@ const CreatePage = (props: any) => {
   const handleSubmit = (event: any) => {
     event.preventDefault();
     setLoading(true);
-    console.log(fields);
 
     CarService.build()
       .insert(fields)
       .then(docId => {
-        console.log(docId);
+        props.history.push(CAR_ROUTES.INDEX, {
+          snackMessage: "A oferta de carro foi salva com sucesso",
+          snackSeverity: "success"
+        });
       })
       .finally(() => {
         setLoading(false);
       });
-
-    setLoading(false);
   };
 
   return (
@@ -131,7 +128,7 @@ const CreatePage = (props: any) => {
       <Grid container spacing={2}>
         <Grid item xs={12} md={12} lg={12}>
           <Paper className={classes.paperForm}>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} noValidate>
               <div className={classes.formContainer}>
                 <TextField
                   label="Descrição"
@@ -139,49 +136,60 @@ const CreatePage = (props: any) => {
                   onChange={handleChange}
                   style={{ margin: 10 }}
                   fullWidth
+                  required
                   className={classes.textField}
                   variant="outlined"
                 />
-                <TextField
-                  label="Placa"
-                  name="board"
-                  onChange={handleChange}
-                  style={{ margin: 10 }}
-                  className={classes.textField}
-                  variant="outlined"
-                />
-                <TextField
-                  label="Quilometragem"
-                  name="mileage"
-                  onChange={handleChange}
-                  style={{ margin: 10 }}
-                  className={classes.textField}
-                  variant="outlined"
-                />
-                <TextField
-                  label="Ano"
-                  name="year"
-                  onChange={handleChange}
-                  style={{ margin: 10 }}
-                  className={classes.textField}
-                  variant="outlined"
-                />
-                <TextField
-                  label="Preço"
-                  name="price"
-                  onChange={handleChange}
-                  style={{ margin: 10 }}
-                  className={classes.textField}
-                  variant="outlined"
-                />
-                <FormControl variant="outlined">
-                  <InputLabel style={{ margin: 10 }}>Marca</InputLabel>
-                  <Select
+
+                <div>
+                  <TextField
+                    label="Placa"
+                    name="board"
+                    required
+                    onChange={handleChange}
+                    style={{ margin: 10 }}
+                    className={classes.textField}
+                    variant="outlined"
+                  />
+                  <TextField
+                    label="Quilometragem"
+                    name="mileage"
+                    required
+                    onChange={handleChange}
+                    style={{ margin: 10 }}
+                    className={classes.textField}
+                    variant="outlined"
+                  />
+                  <TextField
+                    label="Ano"
+                    name="year"
+                    required
+                    onChange={handleChange}
+                    style={{ margin: 10 }}
+                    className={classes.textField}
+                    variant="outlined"
+                  />
+                  <TextField
+                    label="Preço"
+                    name="price"
+                    required
+                    onChange={handleChange}
+                    style={{ margin: 10 }}
+                    className={classes.textField}
+                    variant="outlined"
+                  />
+                </div>
+                <div>
+                  <TextField
+                    select
                     name="brand"
+                    label="Marca"
+                    required
                     value={fields.brand.id}
                     onChange={handleChangeSelect}
-                    label="Marca"
                     style={{ margin: 10 }}
+                    className={classes.textField}
+                    variant="outlined"
                   >
                     <MenuItem value="">:: Selecione ::</MenuItem>
                     {brands.map((row: any, i: number) => (
@@ -189,22 +197,19 @@ const CreatePage = (props: any) => {
                         {row.name}
                       </MenuItem>
                     ))}
-                  </Select>
-                </FormControl>
-                <FormControl variant="outlined">
-                  <InputLabel
-                    id="demo-simple-select-outlined-label"
-                    style={{ margin: 10 }}
-                  >
-                    Modelo
-                  </InputLabel>
-                  <Select
+                  </TextField>
+
+                  <TextField
+                    select
+                    label="Modelo"
                     name="model"
+                    required
                     value={fields.model.id}
                     onChange={handleChangeSelect}
-                    label="Modelo"
                     style={{ margin: 10 }}
+                    className={classes.textField}
                     disabled={fields.brand.id === ""}
+                    variant="outlined"
                   >
                     <MenuItem value="">:: Selecione ::</MenuItem>
                     {models.map((row: any, i: number) => (
@@ -212,21 +217,18 @@ const CreatePage = (props: any) => {
                         {row.name}
                       </MenuItem>
                     ))}
-                  </Select>
-                </FormControl>
-                <FormControl variant="outlined">
-                  <InputLabel
-                    id="demo-simple-select-outlined-label"
-                    style={{ margin: 10 }}
-                  >
-                    Cor
-                  </InputLabel>
-                  <Select
+                  </TextField>
+
+                  <TextField
+                    select
                     name="color"
+                    required
                     value={fields.color.id}
                     onChange={handleChangeSelect}
                     label="Cor"
                     style={{ margin: 10 }}
+                    className={classes.textField}
+                    variant="outlined"
                   >
                     <MenuItem value="">:: Selecione ::</MenuItem>
                     {colors.map((row: any, i: number) => (
@@ -234,21 +236,18 @@ const CreatePage = (props: any) => {
                         {row.name}
                       </MenuItem>
                     ))}
-                  </Select>
-                </FormControl>
-                <FormControl variant="outlined">
-                  <InputLabel
-                    id="demo-simple-select-outlined-label"
-                    style={{ margin: 10 }}
-                  >
-                    Cidade
-                  </InputLabel>
-                  <Select
+                  </TextField>
+
+                  <TextField
+                    select
                     name="city"
+                    required
                     value={fields.city.id}
                     onChange={handleChangeSelect}
                     label="Cidade"
                     style={{ margin: 10 }}
+                    className={classes.textField}
+                    variant="outlined"
                   >
                     <MenuItem value="">:: Selecione ::</MenuItem>
                     {cities.map((row: any, i: number) => (
@@ -256,8 +255,8 @@ const CreatePage = (props: any) => {
                         {row.name}
                       </MenuItem>
                     ))}
-                  </Select>
-                </FormControl>
+                  </TextField>
+                </div>
               </div>
 
               <div>

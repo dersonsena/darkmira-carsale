@@ -26,7 +26,7 @@ export default makeStyles(theme => ({
     flexWrap: "wrap"
   },
   textField: {
-    margin: 8,
+    margin: 10,
     width: "25ch"
   },
   formControl: {
