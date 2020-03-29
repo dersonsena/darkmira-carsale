@@ -15,13 +15,29 @@ export default abstract class ServiceAbstract {
     return this.firestone;
   }
 
+  async insert(document: any) {
+    return this.firestone
+      .collection(this.collectionName)
+      .add(document)
+      .then((docRef: any) => docRef.id)
+      .catch(error => {
+        console.error("Error adding document: ", error);
+      });
+  }
+
   async getAllByCollection(options: IQueryOptions = {}) {
     return this.firestone
       .collection(this.collectionName)
       .get()
       .then(snapshot => {
         const data: object[] = [];
-        snapshot.docs.forEach(doc => data.push(doc.data()));
+
+        snapshot.docs.forEach(doc => {
+          const document = doc.data();
+          document.id = doc.id;
+          data.push(document);
+        });
+
         return data;
       });
   }
