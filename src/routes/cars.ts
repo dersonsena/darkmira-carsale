@@ -2,6 +2,7 @@ import TempPage from "../pages/TempPage";
 import { IRoute } from "./index";
 import lang from "../lang";
 import CarIndexPage from "../pages/admin/cars";
+import CreatePage from "../pages/admin/cars/CreatePage";
 
 export enum CAR_ROUTES {
   INDEX = "/admin/car",
@@ -25,7 +26,7 @@ const routes: IRoute[] = [
   },
   {
     path: CAR_ROUTES.CREATE,
-    component: TempPage,
+    component: CreatePage,
     meta: {
       breadcrumb: [
         { text: lang("admin.title"), to: CAR_ROUTES.INDEX },
