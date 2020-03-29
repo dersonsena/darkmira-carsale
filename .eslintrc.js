@@ -36,13 +36,16 @@ module.exports = {
     "react/no-unused-prop-types": ["warn"],
     "react/jsx-boolean-value": "off",
     "react/forbid-prop-types": "off",
+    "react/prop-types": "off",
+    "react/destructuring-assignment": "off",
     "import/prefer-default-export": "off",
     "import/extensions": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/explicit-member-accessibility": "off",
     "@typescript-eslint/interface-name-prefix": "off",
     "import/no-cycle": "off",
-    "class-methods-use-this": ["warn"]
+    "class-methods-use-this": ["warn"],
+    "react/no-array-index-key": ["warn"]
   },
   settings: {
     "import/parsers": {

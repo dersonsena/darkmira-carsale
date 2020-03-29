@@ -1,5 +1,28 @@
 export default {
   general: {
-    appName: "Car Sale"
+    appName: "Car Sale",
+    gridTitle: "Consulta",
+    addTitle: "Cadastro",
+    updateTitle: "Edição",
+    offerMenu: "Ofertas",
+    adminMenu: "Administração"
+  },
+  admin: {
+    title: "Administração"
+  },
+  home: {
+    title: "Ofertas",
+    detailsTitle: "Detalhes Oferta"
+  },
+  cars: {
+    title: "Ofertas de Carros",
+    showTitle: "Ficha da Oferta",
+    grid: {
+      model: "Modelo",
+      description: "Descrição",
+      brand: "Marca",
+      year: "Ano",
+      color: "Cor"
+    }
   }
 };
