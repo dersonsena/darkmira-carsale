@@ -20,7 +20,7 @@ export const muiDatatablesColumns: MUIDataTableColumnDef[] = [
   },
   {
     label: lang("cars.grid.brand"),
-    name: "model.brand.name",
+    name: "brand.name",
     options: {
       filter: true,
       sort: true
