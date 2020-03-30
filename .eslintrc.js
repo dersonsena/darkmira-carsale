@@ -46,6 +46,8 @@ module.exports = {
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/explicit-member-accessibility": "off",
     "@typescript-eslint/interface-name-prefix": "off",
+    "@typescript-eslint/no-unused-expressions": "off",
+    "@typescript-eslint/consistent-type-assertions": "off",
     "import/no-cycle": "off",
     "class-methods-use-this": ["warn"]
   },
