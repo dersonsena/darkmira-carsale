@@ -39,5 +39,16 @@ export default makeStyles(theme => ({
   backdrop: {
     zIndex: theme.zIndex.drawer + 1,
     color: "#fff"
+  },
+  cardContainer: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between"
+  },
+  card: {
+    width: 260
+  },
+  media: {
+    height: 140
   }
 }));
