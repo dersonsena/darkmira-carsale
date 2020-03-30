@@ -2,26 +2,7 @@ import React, { useState, useEffect } from "react";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import MenuItem from "@material-ui/core/MenuItem";
-import SaveIcon from "@material-ui/icons/Save";
-import {
-  CircularProgress,
-  Backdrop,
-  IconButton,
-  Card,
-  CardActionArea,
-  CardMedia,
-  CardContent,
-  Typography,
-  FormControlLabel,
-  Switch,
-  FormControl,
-  InputLabel,
-  Input
-} from "@material-ui/core";
-import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
+import { CircularProgress, Backdrop } from "@material-ui/core";
 import CarService from "../../../domains/car/CarService";
 import BrandService from "../../../domains/brand/BrandService";
 import CityService from "../../../domains/city/CityService";
@@ -36,18 +17,7 @@ import ICity from "../../../domains/city/ICity";
 import IModel from "../../../domains/model/IModel";
 import ICar, { ICarPhoto } from "../../../domains/car/ICar";
 import { slug } from "../../../core/utils";
-
-const yearsOptions = (numberYears: number = 20): number[] => {
-  const currentYear: number = new Date().getFullYear();
-  const limit: number = currentYear - numberYears;
-  const yearList: number[] = [];
-
-  for (let i = currentYear; i >= limit; i -= 1) {
-    yearList.push(i);
-  }
-
-  return yearList;
-};
+import CarForm from "./CarForm";
 
 const CreatePage = (props: any) => {
   const classes = styles();
@@ -80,11 +50,8 @@ const CreatePage = (props: any) => {
       .finally(() => setLoading(false));
   }, []);
 
-  yearsOptions();
-
-  const handleChange = (event: any) => {
-    const auxValues: ICar = { ...fields };
-    const name: keyof ICar = event.target.name;
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const name: string = event.target.name;
     const type: string = event.target.type;
     let value: any = event.target.value;
 
@@ -92,17 +59,16 @@ const CreatePage = (props: any) => {
       value = parseInt(value, 10);
     }
 
-    auxValues[name] = value;
-
-    setFields(auxValues);
+    setFields({ ...fields, [name]: value });
   };
 
-  const handleChangeSelect = (event: any) => {
-    const auxValues: any = { ...fields };
-    const name: keyof ICar = event.target.name;
+  const handleChangeSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const auxValues: ICar = { ...fields };
+    const name: string = event.target.name;
     const value: string = event.target.value;
 
     if (value === "") {
+      // @ts-ignore
       auxValues[name] = initialFields[name];
 
       if (name === "brand") {
@@ -110,7 +76,7 @@ const CreatePage = (props: any) => {
       }
 
       setFields(auxValues);
-      return true;
+      return;
     }
 
     let collection = [];
@@ -129,7 +95,7 @@ const CreatePage = (props: any) => {
         collection = models;
         break;
       default:
-        return true;
+        return;
     }
 
     const selected: any = collection.find((row: any) => row.id === value);
@@ -142,7 +108,7 @@ const CreatePage = (props: any) => {
     setFields(auxValues);
   };
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     setLoading(true);
 
@@ -169,8 +135,9 @@ const CreatePage = (props: any) => {
   const handleCapture = (event: any) => {
     const auxValues: ICar = { ...fields };
     const selectedFiles = event.target.files;
+    const count: number = selectedFiles.length;
 
-    for (let i = 0; i < selectedFiles.length; i += 1) {
+    for (let i = 0; i < count; i += 1) {
       const fileReader = new FileReader();
       const file = selectedFiles[i];
 
@@ -192,16 +159,23 @@ const CreatePage = (props: any) => {
     }, 100);
   };
 
-  const handleToggleFeatured = (index: number) => (event: any) => {
+  const handleToggleFeatured = (event: React.ChangeEvent, index: number) => {
     const newFields = { ...fields };
 
-    const newPhotos = newFields.photos.map((photo: any) => {
+    const newPhotos = newFields.photos.map((photo: ICarPhoto) => {
       photo.featured = false;
       return photo;
     });
 
     newPhotos[index].featured = true;
     newFields.photos = newPhotos;
+
+    setFields(newFields);
+  };
+
+  const handleRemovePhoto = (event: React.MouseEvent, index: number) => {
+    const newFields = { ...fields };
+    newFields.photos.splice(index, 1);
 
     setFields(newFields);
   };
@@ -215,221 +189,20 @@ const CreatePage = (props: any) => {
       <Grid container spacing={2}>
         <Grid item xs={12} md={12} lg={12}>
           <Paper className={classes.paperForm}>
-            <form onSubmit={handleSubmit} noValidate>
-              <div className={classes.formContainer}>
-                <TextField
-                  label="Descrição"
-                  name="description"
-                  onChange={handleChange}
-                  style={{ margin: 10 }}
-                  fullWidth
-                  required
-                  className={classes.textField}
-                  variant="outlined"
-                />
-
-                <div>
-                  <TextField
-                    label="Placa"
-                    name="board"
-                    required
-                    placeholder="Ex: AAA-9999"
-                    value={fields.board}
-                    onChange={handleChange}
-                    style={{ margin: 10 }}
-                    className={classes.textField}
-                    variant="outlined"
-                  />
-                  <TextField
-                    label="Quilometragem"
-                    name="mileage"
-                    type="number"
-                    required
-                    onChange={handleChange}
-                    style={{ margin: 10 }}
-                    className={classes.textField}
-                    variant="outlined"
-                  />
-                  <TextField
-                    select
-                    label="Ano"
-                    name="year"
-                    value={fields.year}
-                    required
-                    onChange={handleChange}
-                    style={{ margin: 10 }}
-                    className={classes.textField}
-                    variant="outlined"
-                  >
-                    <MenuItem value="">:: Selecione ::</MenuItem>
-                    {yearsOptions().map((year: number) => (
-                      <MenuItem key={year} value={year}>
-                        {year}
-                      </MenuItem>
-                    ))}
-                  </TextField>
-                  <TextField
-                    label="Preço"
-                    name="price"
-                    required
-                    onChange={handleChange}
-                    style={{ margin: 10 }}
-                    className={classes.textField}
-                    variant="outlined"
-                  />
-                </div>
-                <div>
-                  <TextField
-                    select
-                    name="brand"
-                    label="Marca"
-                    required
-                    value={fields.brand.id}
-                    onChange={handleChangeSelect}
-                    style={{ margin: 10 }}
-                    className={classes.textField}
-                    variant="outlined"
-                  >
-                    <MenuItem value="">:: Selecione ::</MenuItem>
-                    {brands.map((row: any, i: number) => (
-                      <MenuItem key={i} value={row.id}>
-                        {row.name}
-                      </MenuItem>
-                    ))}
-                  </TextField>
-
-                  <TextField
-                    select
-                    label="Modelo"
-                    name="model"
-                    required
-                    value={fields.model.id}
-                    onChange={handleChangeSelect}
-                    style={{ margin: 10 }}
-                    className={classes.textField}
-                    disabled={fields.brand.id === ""}
-                    variant="outlined"
-                  >
-                    <MenuItem value="">:: Selecione ::</MenuItem>
-                    {models.map((row: any, i: number) => (
-                      <MenuItem key={i} value={row.id}>
-                        {row.name}
-                      </MenuItem>
-                    ))}
-                  </TextField>
-
-                  <TextField
-                    select
-                    name="color"
-                    required
-                    value={fields.color.id}
-                    onChange={handleChangeSelect}
-                    label="Cor"
-                    style={{ margin: 10 }}
-                    className={classes.textField}
-                    variant="outlined"
-                  >
-                    <MenuItem value="">:: Selecione ::</MenuItem>
-                    {colors.map((row: any, i: number) => (
-                      <MenuItem key={i} value={row.id}>
-                        {row.name}
-                      </MenuItem>
-                    ))}
-                  </TextField>
-
-                  <TextField
-                    select
-                    name="city"
-                    required
-                    value={fields.city.id}
-                    onChange={handleChangeSelect}
-                    label="Cidade"
-                    style={{ margin: 10 }}
-                    className={classes.textField}
-                    variant="outlined"
-                  >
-                    <MenuItem value="">:: Selecione ::</MenuItem>
-                    {cities.map((row: any, i: number) => (
-                      <MenuItem key={i} value={row.id}>
-                        {row.name}
-                      </MenuItem>
-                    ))}
-                  </TextField>
-                </div>
-              </div>
-              <div>
-                <Grid container spacing={2}>
-                  <Grid item xs={12} md={12} lg={12}>
-                    <Button
-                      style={{ margin: 10 }}
-                      variant="contained"
-                      component="label"
-                      onChange={handleCapture}
-                    >
-                      <AddPhotoAlternateIcon />
-                      Selecionar Fotos da Oferta
-                      <Input
-                        value=""
-                        name="photos"
-                        type="file"
-                        style={{ display: "none" }}
-                        inputProps={{
-                          accept: "image/*",
-                          multiple: true
-                        }}
-                      />
-                    </Button>
-                  </Grid>
-                  {fields.photos.map((photo, i: number) => (
-                    <Grid key={i} item xs={3} md={3} lg={3}>
-                      <Card key={i} className={classes.card}>
-                        <CardActionArea>
-                          <CardMedia
-                            className={classes.media}
-                            image={photo.image}
-                            title="Title"
-                          />
-                        </CardActionArea>
-                        <CardContent>
-                          <Typography
-                            variant="body2"
-                            color="textSecondary"
-                            component="p"
-                          >
-                            {photo.name}
-
-                            <FormControlLabel
-                              control={
-                                <Switch
-                                  checked={photo.featured}
-                                  onChange={handleToggleFeatured(i)}
-                                  name={`photo-${i}`}
-                                  color="primary"
-                                />
-                              }
-                              label="Foto Destaque"
-                            />
-                          </Typography>
-                        </CardContent>
-                      </Card>
-                    </Grid>
-                  ))}
-                </Grid>
-              </div>
-
-              <div>
-                <Button
-                  variant="contained"
-                  type="submit"
-                  style={{ margin: 10 }}
-                  color="primary"
-                  onClick={() => props.history.push(CAR_ROUTES.CREATE)}
-                  startIcon={<SaveIcon />}
-                >
-                  Salvar
-                </Button>
-              </div>
-            </form>
+            <CarForm
+              fields={fields}
+              classes={classes}
+              brands={brands}
+              models={models}
+              colors={colors}
+              cities={cities}
+              onChange={handleChange}
+              onChangeSelect={handleChangeSelect}
+              onSubmit={handleSubmit}
+              onCapturePhoto={handleCapture}
+              onToggleFeatured={handleToggleFeatured}
+              onRemovePhoto={handleRemovePhoto}
+            />
           </Paper>
         </Grid>
       </Grid>

@@ -4,9 +4,9 @@ import IModel from "../model/IModel";
 import IBrand from "../brand/IBrand";
 
 export interface ICarPhoto {
-  id: string | number;
+  name: string;
   featured: boolean;
-  imageUrl: string;
+  image: string;
 }
 
 export default interface ICar {
