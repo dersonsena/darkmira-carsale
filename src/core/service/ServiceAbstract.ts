@@ -40,6 +40,13 @@ export default abstract class ServiceAbstract {
       .update(data);
   }
 
+  async delete(documentId: string) {
+    return this.firestore
+      .collection(this.collectionName)
+      .doc(documentId)
+      .delete();
+  }
+
   async getAllByCollection(options: IQueryOptions = {}) {
     const sortField: string = options.sort?.column
       ? options.sort.column
