@@ -55,7 +55,7 @@ export default abstract class FormValidator {
       return;
     }
 
-    if (typeof value === "string" && value !== "" && value !== null) {
+    if (typeof value !== "object" && value !== "" && value !== null) {
       return;
     }
 
