@@ -11,7 +11,44 @@ export default makeStyles(theme => ({
     overflow: "auto",
     flexDirection: "column"
   },
+  paperForm: {
+    marginTop: theme.spacing(2),
+    display: "flex",
+    overflow: "auto",
+    flexDirection: "column",
+    padding: theme.spacing(3)
+  },
   addButon: {
     marginTop: theme.spacing(3)
+  },
+  formContainer: {
+    display: "flex",
+    flexWrap: "wrap"
+  },
+  textField: {
+    margin: 10,
+    width: "25ch"
+  },
+  formControl: {
+    margin: 10,
+    minWidth: 120
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2)
+  },
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: "#fff"
+  },
+  cardContainer: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between"
+  },
+  card: {
+    width: 260
+  },
+  media: {
+    height: 140
   }
 }));

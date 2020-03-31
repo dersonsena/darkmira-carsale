@@ -1,3 +1,5 @@
+import slugify from "slugify";
+
 /**
  * @param {Object} element
  * @param {String|Array} path
@@ -18,4 +20,8 @@ export const get = (element: any, path: any, fallback: any): any => {
   }
 
   return get(element[search.shift()], search, fallback);
+};
+
+export const slug = (text: string, options: object = {}): string => {
+  return slugify(text, options).toLowerCase();
 };

@@ -27,6 +27,7 @@ module.exports = {
   rules: {
     "global-require": "off",
     "no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
+    "prefer-destructuring": "off",
     "react/jsx-filename-extension": [
       "error",
       {
@@ -38,14 +39,17 @@ module.exports = {
     "react/forbid-prop-types": "off",
     "react/prop-types": "off",
     "react/destructuring-assignment": "off",
+    "react/no-array-index-key": ["warn"],
+    "react/no-string-refs": ["warn"],
     "import/prefer-default-export": "off",
     "import/extensions": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/explicit-member-accessibility": "off",
     "@typescript-eslint/interface-name-prefix": "off",
+    "@typescript-eslint/no-unused-expressions": "off",
+    "@typescript-eslint/consistent-type-assertions": "off",
     "import/no-cycle": "off",
-    "class-methods-use-this": ["warn"],
-    "react/no-array-index-key": ["warn"]
+    "class-methods-use-this": ["warn"]
   },
   settings: {
     "import/parsers": {
