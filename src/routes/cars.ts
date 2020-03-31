@@ -1,8 +1,9 @@
 import TempPage from "../pages/TempPage";
 import { IRoute } from "./index";
+import { SCOPES } from "./scopes";
 import lang from "../lang";
-import CarIndexPage from "../pages/admin/cars";
-import CreatePage from "../pages/admin/cars/CreatePage";
+import IndexPage from "../pages/admin/cars/IndexPage";
+import FormPage from "../pages/admin/cars/FormPage";
 
 export enum CAR_ROUTES {
   INDEX = "/admin/car",
@@ -15,8 +16,9 @@ export enum CAR_ROUTES {
 const routes: IRoute[] = [
   {
     path: CAR_ROUTES.INDEX,
-    component: CarIndexPage,
+    component: IndexPage,
     meta: {
+      scope: null,
       breadcrumb: [
         { text: lang("admin.title"), to: CAR_ROUTES.INDEX },
         { text: lang("cars.title"), to: CAR_ROUTES.INDEX },
@@ -26,8 +28,9 @@ const routes: IRoute[] = [
   },
   {
     path: CAR_ROUTES.CREATE,
-    component: CreatePage,
+    component: FormPage,
     meta: {
+      scope: SCOPES.CREATE,
       breadcrumb: [
         { text: lang("admin.title"), to: CAR_ROUTES.INDEX },
         { text: lang("cars.title"), to: CAR_ROUTES.INDEX },
@@ -37,8 +40,9 @@ const routes: IRoute[] = [
   },
   {
     path: CAR_ROUTES.UPDATE,
-    component: TempPage,
+    component: FormPage,
     meta: {
+      scope: SCOPES.UPDATE,
       breadcrumb: [
         { text: lang("admin.title"), to: CAR_ROUTES.INDEX },
         { text: lang("cars.title"), to: CAR_ROUTES.INDEX },
@@ -55,6 +59,7 @@ const routes: IRoute[] = [
     path: CAR_ROUTES.SHOW,
     component: TempPage,
     meta: {
+      scope: null,
       breadcrumb: [
         { text: lang("admin.title"), to: CAR_ROUTES.INDEX },
         { text: lang("cars.title"), to: CAR_ROUTES.INDEX },
