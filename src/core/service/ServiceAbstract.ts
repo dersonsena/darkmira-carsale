@@ -1,6 +1,7 @@
 import firebase from "firebase";
 import { firestore, storage } from "../firebase";
 import { IQueryOptions, ORDER_DIRECTIONS } from "./Contratcs";
+import { ICarPhoto } from "../../domains/car/ICar";
 
 export default abstract class ServiceAbstract {
   protected abstract collectionName: string;
@@ -32,6 +33,13 @@ export default abstract class ServiceAbstract {
       });
   }
 
+  async update(documentId: string, data: object) {
+    return this.firestore
+      .collection(this.collectionName)
+      .doc(documentId)
+      .update(data);
+  }
+
   async getAllByCollection(options: IQueryOptions = {}) {
     const sortField: string = options.sort?.column
       ? options.sort.column
@@ -55,6 +63,37 @@ export default abstract class ServiceAbstract {
         });
 
         return data;
+      });
+  }
+
+  async getById(documentId: string) {
+    if (!documentId) {
+      return false;
+    }
+
+    return this.firestore
+      .collection(this.collectionName)
+      .doc(documentId)
+      .get()
+      .then(snapshot => {
+        if (!snapshot.exists) {
+          return null;
+        }
+
+        return snapshot;
+      })
+      .then((snapshot: any) => {
+        const data = snapshot.data();
+
+        data.photos.map((photo: ICarPhoto) => {
+          photo.image = photo.firebaseUrl;
+          return photo;
+        });
+
+        return {
+          ...data,
+          id: snapshot.id
+        };
       });
   }
 }
