@@ -5,7 +5,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import SaveIcon from "@material-ui/icons/Save";
 import { Input, Grid } from "@material-ui/core";
 import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
-import ICar, { ICarPhoto } from "../../../domains/car/ICar";
+import ICar from "../../../domains/car/ICar";
 import IBrand from "../../../domains/brand/IBrand";
 import IColor from "../../../domains/color/IColor";
 import IModel from "../../../domains/model/IModel";
@@ -14,6 +14,7 @@ import CarGallery from "./CarGallery";
 
 interface IProps {
   fields: ICar;
+  validators: any;
   classes: any;
   brands: IBrand[];
   models: IModel[];
@@ -30,6 +31,7 @@ interface IProps {
 const CarForm: FC<IProps> = (props: IProps) => {
   const {
     fields,
+    validators,
     classes,
     brands,
     models,
@@ -49,6 +51,8 @@ const CarForm: FC<IProps> = (props: IProps) => {
         <TextField
           label="Descrição"
           name="description"
+          error={!!validators.description}
+          helperText={validators.description}
           onChange={onChange}
           style={{ margin: 10 }}
           fullWidth
@@ -61,6 +65,8 @@ const CarForm: FC<IProps> = (props: IProps) => {
           <TextField
             label="Placa"
             name="board"
+            error={!!validators.board}
+            helperText={validators.board}
             required
             placeholder="Ex: AAA-9999"
             value={fields.board}
@@ -72,6 +78,8 @@ const CarForm: FC<IProps> = (props: IProps) => {
           <TextField
             label="Quilometragem"
             name="mileage"
+            error={!!validators.mileage}
+            helperText={validators.mileage}
             type="number"
             required
             onChange={onChange}
@@ -83,6 +91,8 @@ const CarForm: FC<IProps> = (props: IProps) => {
             select
             label="Ano"
             name="year"
+            error={!!validators.year}
+            helperText={validators.year}
             value={fields.year}
             required
             onChange={onChange}
@@ -100,6 +110,8 @@ const CarForm: FC<IProps> = (props: IProps) => {
           <TextField
             label="Preço"
             name="price"
+            error={!!validators.price}
+            helperText={validators.price}
             required
             onChange={onChange}
             style={{ margin: 10 }}
@@ -112,6 +124,8 @@ const CarForm: FC<IProps> = (props: IProps) => {
             select
             name="brand"
             label="Marca"
+            error={!!validators.brand}
+            helperText={validators.brand}
             required
             value={fields.brand.id}
             onChange={onChangeSelect}
@@ -131,6 +145,8 @@ const CarForm: FC<IProps> = (props: IProps) => {
             select
             label="Modelo"
             name="model"
+            error={!!validators.model}
+            helperText={validators.model}
             required
             value={fields.model.id}
             onChange={onChangeSelect}
@@ -150,6 +166,8 @@ const CarForm: FC<IProps> = (props: IProps) => {
           <TextField
             select
             name="color"
+            error={!!validators.color}
+            helperText={validators.color}
             required
             value={fields.color.id}
             onChange={onChangeSelect}
@@ -169,6 +187,8 @@ const CarForm: FC<IProps> = (props: IProps) => {
           <TextField
             select
             name="city"
+            error={!!validators.city}
+            helperText={validators.city}
             required
             value={fields.city.id}
             onChange={onChangeSelect}

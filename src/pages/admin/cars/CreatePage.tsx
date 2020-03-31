@@ -18,10 +18,12 @@ import IModel from "../../../domains/model/IModel";
 import ICar, { ICarPhoto } from "../../../domains/car/ICar";
 import { slug } from "../../../core/utils";
 import CarForm from "./CarForm";
+import CarValidators from "./CarValidator";
 
 const CreatePage = (props: any) => {
   const classes = styles();
   const [fields, setFields] = useState<ICar>(initialFields);
+  const [validators, setValidators] = useState({});
   const [brands, setBrands] = useState<IBrand[]>([]);
   const [models, setModels] = useState<IModel[]>([]);
   const [colors, setColors] = useState<IColor[]>([]);
@@ -110,7 +112,6 @@ const CreatePage = (props: any) => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    setLoading(true);
 
     const newFields: ICar = {
       ...fields,
@@ -118,6 +119,15 @@ const CreatePage = (props: any) => {
     };
 
     delete newFields.brand.models;
+
+    const validator = CarValidators.build(newFields);
+
+    if (!validator.validate()) {
+      setValidators(validator.getErrors());
+      return;
+    }
+
+    setLoading(true);
 
     CarService.build()
       .insert(newFields)
@@ -191,6 +201,7 @@ const CreatePage = (props: any) => {
           <Paper className={classes.paperForm}>
             <CarForm
               fields={fields}
+              validators={validators}
               classes={classes}
               brands={brands}
               models={models}
