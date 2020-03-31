@@ -77,7 +77,7 @@ export default abstract class ServiceAbstract {
       .get()
       .then(snapshot => {
         if (!snapshot.exists) {
-          return null;
+          throw new Error("Registro requisitado não foi encontrado.");
         }
 
         return snapshot;

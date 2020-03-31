@@ -54,10 +54,16 @@ const FormPage = (props: any) => {
 
         return carId;
       })
-      .then((documentId: string) => CarService.build().getById(documentId))
+      .then((documentId: string) => {
+        if (!documentId) {
+          throw new Error("interrupt_pipe");
+        }
+
+        return CarService.build().getById(documentId);
+      })
       .then(car => {
         if (!car) {
-          return true;
+          throw new Error("interrupt_pipe");
         }
 
         // @ts-ignore
@@ -66,8 +72,20 @@ const FormPage = (props: any) => {
 
         return true;
       })
+      .catch(err => {
+        console.warn(err);
+
+        if (err.message === "interrupt_pipe") {
+          return true;
+        }
+
+        props.history.push(CAR_ROUTES.INDEX, {
+          snackMessage: err.message,
+          snackSeverity: "error"
+        });
+      })
       .finally(() => setLoading(false));
-  }, [carId]);
+  }, [carId, props.history]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const name: string = event.target.name;
