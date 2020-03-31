@@ -1,22 +1,29 @@
 import firebase from "firebase";
-import { firestone } from "../firebase";
-import { IQueryOptions } from "./Contratcs";
+import { firestore, storage } from "../firebase";
+import { IQueryOptions, ORDER_DIRECTIONS } from "./Contratcs";
 
 export default abstract class ServiceAbstract {
   protected abstract collectionName: string;
 
-  private firestone: firebase.firestore.Firestore;
+  private storage: firebase.storage.Storage;
+
+  private firestore: firebase.firestore.Firestore;
 
   constructor(options = {}) {
-    this.firestone = firestone;
+    this.firestore = firestore;
+    this.storage = storage;
   }
 
-  getFirestone(): firebase.firestore.Firestore {
-    return this.firestone;
+  getfirestore(): firebase.firestore.Firestore {
+    return this.firestore;
+  }
+
+  getStorage(): firebase.storage.Storage {
+    return this.storage;
   }
 
   async insert(document: any) {
-    return this.firestone
+    return this.firestore
       .collection(this.collectionName)
       .add(document)
       .then((docRef: any) => docRef.id)
@@ -26,8 +33,17 @@ export default abstract class ServiceAbstract {
   }
 
   async getAllByCollection(options: IQueryOptions = {}) {
-    return this.firestone
+    const sortField: string = options.sort?.column
+      ? options.sort.column
+      : "name";
+
+    const sortDirection: ORDER_DIRECTIONS = options.sort?.direction
+      ? options.sort.direction
+      : ORDER_DIRECTIONS.ASC;
+
+    return this.firestore
       .collection(this.collectionName)
+      .orderBy(sortField, sortDirection)
       .get()
       .then(snapshot => {
         const data: object[] = [];

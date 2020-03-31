@@ -10,7 +10,7 @@ import IBrand from "../../../domains/brand/IBrand";
 import IColor from "../../../domains/color/IColor";
 import IModel from "../../../domains/model/IModel";
 import ICity from "../../../domains/city/ICity";
-import CarGallery from "./CarGallery";
+import CarGallery from "../../../domains/car/components/CarGallery";
 
 interface IProps {
   fields: ICar;

@@ -33,7 +33,7 @@ const CarIndexPage = (props: any) => {
     }
 
     CarService.build()
-      .getAllByCollection()
+      .getAllByCollection({ sort: { column: "description" } })
       .then((cars: any) => setRows(cars))
       .finally(() => setLoading(false));
   }, [props.location.state]);

@@ -1,8 +1,8 @@
-import ICar from "../../../domains/car/ICar";
+import ICar from "./ICar";
 import FormValidator, {
   IValidatorRule,
   RULES
-} from "../../../core/form-validator/FormValidator";
+} from "../../core/form-validator/FormValidator";
 
 export default class CarValidators extends FormValidator {
   static build(fields: ICar) {

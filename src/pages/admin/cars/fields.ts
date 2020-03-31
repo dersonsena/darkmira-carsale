@@ -20,4 +20,4 @@ const initialFields: ICar = {
   year: ""
 };
 
-export default initialFields;
+export default Object.freeze(initialFields);

@@ -12,4 +12,6 @@ firebase.initializeApp({
   measurementId: process.env.REACT_APP_FB_MEASUREMENT_ID
 });
 
-export const firestone: firebase.firestore.Firestore = firebase.firestore();
+export const storage: firebase.storage.Storage = firebase.storage();
+
+export const firestore: firebase.firestore.Firestore = firebase.firestore();

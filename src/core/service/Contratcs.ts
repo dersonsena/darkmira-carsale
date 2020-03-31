@@ -4,8 +4,8 @@ export enum FILTER_OPERATORS {
 }
 
 export enum ORDER_DIRECTIONS {
-  ASC = "ASC",
-  DESC = "DESC"
+  ASC = "asc",
+  DESC = "desc"
 }
 
 export interface IFilter {
@@ -21,7 +21,7 @@ export interface IPagination {
 
 export interface ISort {
   column: string;
-  direction: ORDER_DIRECTIONS;
+  direction?: ORDER_DIRECTIONS;
 }
 
 export interface IQueryOptions {

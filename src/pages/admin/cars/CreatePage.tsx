@@ -18,7 +18,7 @@ import IModel from "../../../domains/model/IModel";
 import ICar, { ICarPhoto } from "../../../domains/car/ICar";
 import { slug } from "../../../core/utils";
 import CarForm from "./CarForm";
-import CarValidators from "./CarValidator";
+import CarValidators from "../../../domains/car/CarValidator";
 
 const CreatePage = (props: any) => {
   const classes = styles();
@@ -51,6 +51,8 @@ const CreatePage = (props: any) => {
       })
       .finally(() => setLoading(false));
   }, []);
+
+  console.log("INIT", initialFields);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const name: string = event.target.name;
@@ -129,9 +131,27 @@ const CreatePage = (props: any) => {
 
     setLoading(true);
 
-    CarService.build()
-      .insert(newFields)
+    const service = CarService.build();
+    const promises: any[] = [];
+
+    newFields.photos.forEach((photo: ICarPhoto, i: number) => {
+      promises.push(service.uploadPhoto(photo, i));
+    });
+
+    Promise.all(promises)
+      .then((photoInfos: any[]) => {
+        photoInfos.forEach((info: any) => {
+          newFields.photos[info.index].firebaseUrl = info.url;
+          newFields.photos[info.index].image = "";
+          delete newFields.photos[info.index].file;
+        });
+
+        return newFields;
+      })
+      .then((values: ICar) => service.insert(values))
       .then(docId => {
+        console.log("SAVE", initialFields);
+
         props.history.push(CAR_ROUTES.INDEX, {
           snackMessage: "A oferta de carro foi salva com sucesso",
           snackSeverity: "success"
@@ -156,8 +176,11 @@ const CreatePage = (props: any) => {
       fileReader.onload = (e: any) => {
         auxValues.photos.push({
           name: file.name,
+          type: file.type,
           image: e.target.result,
-          featured: false
+          firebaseUrl: "",
+          featured: false,
+          file
         });
         setTimeout(() => setFields(auxValues), 100);
       };

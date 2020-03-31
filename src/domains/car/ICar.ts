@@ -5,8 +5,11 @@ import IBrand from "../brand/IBrand";
 
 export interface ICarPhoto {
   name: string;
+  type: string;
   featured: boolean;
   image: string;
+  firebaseUrl: string;
+  file: File;
 }
 
 export default interface ICar {
