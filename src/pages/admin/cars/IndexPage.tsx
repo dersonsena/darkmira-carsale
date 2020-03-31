@@ -68,6 +68,7 @@ const IndexPage = (props: any) => {
         <Grid item xs={12} md={12} lg={12}>
           <Paper className={classes.paper}>
             <CarsGrid
+              {...props}
               rows={rows}
               title={lang("cars.title")}
               loading={loading}
