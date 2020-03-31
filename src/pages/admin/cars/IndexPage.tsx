@@ -15,7 +15,7 @@ import CarService from "../../../domains/car/CarService";
 import Breadcrumb from "../../../components/Breadcrumb";
 import { CAR_ROUTES } from "../../../routes/cars";
 
-const CarIndexPage = (props: any) => {
+const IndexPage = (props: any) => {
   const classes = styles();
   const [rows, setRows] = useState<ICar[]>([]);
   const [loading, setLoading] = useState(false);
@@ -85,4 +85,4 @@ interface IProps {
   meta: any;
 }
 
-export default CarIndexPage;
+export default IndexPage;
