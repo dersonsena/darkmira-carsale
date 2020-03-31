@@ -20,8 +20,11 @@ import { slug } from "../../../core/utils";
 import CarForm from "./CarForm";
 import CarValidators from "../../../domains/car/CarValidator";
 
-const CreatePage = (props: any) => {
+const FormPage = (props: any) => {
   const classes = styles();
+  const carId: string = props.match.params.id;
+  const carService = CarService.build();
+
   const [fields, setFields] = useState<ICar>(initialFields);
   const [validators, setValidators] = useState({});
   const [brands, setBrands] = useState<IBrand[]>([]);
@@ -48,11 +51,41 @@ const CreatePage = (props: any) => {
         setBrands(brandList);
         setCities(cityList);
         setColors(colorList);
+
+        return carId;
+      })
+      .then((documentId: string) => {
+        if (!documentId) {
+          throw new Error("interrupt_pipe");
+        }
+
+        return CarService.build().getById(documentId);
+      })
+      .then(car => {
+        if (!car) {
+          throw new Error("interrupt_pipe");
+        }
+
+        // @ts-ignore
+        setModels(car.brand.models);
+        setFields(car);
+
+        return true;
+      })
+      .catch(err => {
+        console.warn(err);
+
+        if (err.message === "interrupt_pipe") {
+          return true;
+        }
+
+        props.history.push(CAR_ROUTES.INDEX, {
+          snackMessage: err.message,
+          snackSeverity: "error"
+        });
       })
       .finally(() => setLoading(false));
-  }, []);
-
-  console.log("INIT", initialFields);
+  }, [carId, props.history]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const name: string = event.target.name;
@@ -120,8 +153,6 @@ const CreatePage = (props: any) => {
       slug: slug(fields.description)
     };
 
-    delete newFields.brand.models;
-
     const validator = CarValidators.build(newFields);
 
     if (!validator.validate()) {
@@ -131,11 +162,14 @@ const CreatePage = (props: any) => {
 
     setLoading(true);
 
-    const service = CarService.build();
     const promises: any[] = [];
 
     newFields.photos.forEach((photo: ICarPhoto, i: number) => {
-      promises.push(service.uploadPhoto(photo, i));
+      if (photo.firebaseUrl !== "") {
+        return;
+      }
+
+      promises.push(carService.uploadPhoto(photo, i));
     });
 
     Promise.all(promises)
@@ -148,10 +182,14 @@ const CreatePage = (props: any) => {
 
         return newFields;
       })
-      .then((values: ICar) => service.insert(values))
-      .then(docId => {
-        console.log("SAVE", initialFields);
+      .then((values: ICar) => {
+        if (!carId) {
+          return carService.insert(values);
+        }
 
+        return carService.update(carId, values);
+      })
+      .then(() => {
         props.history.push(CAR_ROUTES.INDEX, {
           snackMessage: "A oferta de carro foi salva com sucesso",
           snackSeverity: "success"
@@ -166,6 +204,7 @@ const CreatePage = (props: any) => {
     const auxValues: ICar = { ...fields };
     const selectedFiles = event.target.files;
     const count: number = selectedFiles.length;
+    const totalPhotos: number = fields.photos.length;
 
     for (let i = 0; i < count; i += 1) {
       const fileReader = new FileReader();
@@ -187,7 +226,10 @@ const CreatePage = (props: any) => {
     }
 
     setTimeout(() => {
-      auxValues.photos[0].featured = true;
+      if (totalPhotos === 0) {
+        auxValues.photos[0].featured = true;
+      }
+
       setFields(auxValues);
     }, 100);
   };
@@ -244,4 +286,4 @@ const CreatePage = (props: any) => {
   );
 };
 
-export default CreatePage;
+export default FormPage;

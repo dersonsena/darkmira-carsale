@@ -15,7 +15,7 @@ import CarService from "../../../domains/car/CarService";
 import Breadcrumb from "../../../components/Breadcrumb";
 import { CAR_ROUTES } from "../../../routes/cars";
 
-const CarIndexPage = (props: any) => {
+const IndexPage = (props: any) => {
   const classes = styles();
   const [rows, setRows] = useState<ICar[]>([]);
   const [loading, setLoading] = useState(false);
@@ -68,6 +68,7 @@ const CarIndexPage = (props: any) => {
         <Grid item xs={12} md={12} lg={12}>
           <Paper className={classes.paper}>
             <CarsGrid
+              {...props}
               rows={rows}
               title={lang("cars.title")}
               loading={loading}
@@ -85,4 +86,4 @@ interface IProps {
   meta: any;
 }
 
-export default CarIndexPage;
+export default IndexPage;

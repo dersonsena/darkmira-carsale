@@ -51,6 +51,7 @@ const CarForm: FC<IProps> = (props: IProps) => {
         <TextField
           label="Descrição"
           name="description"
+          value={fields.description}
           error={!!validators.description}
           helperText={validators.description}
           onChange={onChange}
@@ -78,6 +79,7 @@ const CarForm: FC<IProps> = (props: IProps) => {
           <TextField
             label="Quilometragem"
             name="mileage"
+            value={fields.mileage}
             error={!!validators.mileage}
             helperText={validators.mileage}
             type="number"
@@ -110,6 +112,7 @@ const CarForm: FC<IProps> = (props: IProps) => {
           <TextField
             label="Preço"
             name="price"
+            value={fields.price}
             error={!!validators.price}
             helperText={validators.price}
             required

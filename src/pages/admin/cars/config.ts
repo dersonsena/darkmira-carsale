@@ -3,6 +3,13 @@ import lang from "../../../lang";
 
 export const muiDatatablesColumns: MUIDataTableColumnDef[] = [
   {
+    label: "",
+    name: "id",
+    options: {
+      display: "false"
+    }
+  },
+  {
     label: lang("cars.grid.model"),
     name: "model.name",
     options: {
