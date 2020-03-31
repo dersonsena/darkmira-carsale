@@ -7,6 +7,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 import { CAR_ROUTES } from "../../../routes/cars";
 import ICar from "../ICar";
+import CarService from "../CarService";
 
 const CarsGrid: React.FC<IProps> = props => {
   const {
@@ -65,7 +66,19 @@ const CarsGrid: React.FC<IProps> = props => {
               <Tooltip title="Remover este registro">
                 <IconButton
                   onClick={() => {
-                    props.history.push(CAR_ROUTES.DELETE.replace(":id", rowId));
+                    if (
+                      !window.confirm("Deseja realmente remover esta oferta?")
+                    ) {
+                      return false;
+                    }
+                    CarService.build()
+                      .delete(rowId)
+                      .then(() => {
+                        props.history.push(CAR_ROUTES.INDEX, {
+                          snackMessage: "A oferta de carro foi removida.",
+                          snackSeverity: "success"
+                        });
+                      });
                   }}
                   aria-label="delete"
                   color="secondary"
