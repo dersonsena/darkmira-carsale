@@ -4,12 +4,13 @@ import { SCOPES } from "./scopes";
 import lang from "../lang";
 import IndexPage from "../pages/admin/cars/IndexPage";
 import FormPage from "../pages/admin/cars/FormPage";
+import DetailPage from "../pages/admin/cars/DetailPage";
 
 export enum CAR_ROUTES {
   INDEX = "/admin/car",
   CREATE = "/admin/car/create",
   UPDATE = "/admin/car/update/:id",
-  SHOW = "/admin/car/show/:id",
+  DETAILS = "/admin/car/details/:id",
   DELETE = "/admin/car/delete/:id"
 }
 
@@ -56,8 +57,8 @@ const routes: IRoute[] = [
     meta: {}
   },
   {
-    path: CAR_ROUTES.SHOW,
-    component: TempPage,
+    path: CAR_ROUTES.DETAILS,
+    component: DetailPage,
     meta: {
       scope: null,
       breadcrumb: [

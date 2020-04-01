@@ -234,7 +234,6 @@ const CarForm: FC<IProps> = (props: IProps) => {
           </Grid>
           <CarGallery
             photos={fields.photos}
-            classes={classes}
             onToggleFeatured={onToggleFeatured}
             onRemovePhoto={onRemovePhoto}
           />
