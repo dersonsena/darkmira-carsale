@@ -10,7 +10,7 @@ export const muiDatatablesColumns: MUIDataTableColumnDef[] = [
     }
   },
   {
-    label: lang("cars.grid.model"),
+    label: lang("cars.entity.model"),
     name: "model.name",
     options: {
       filter: false,
@@ -18,7 +18,7 @@ export const muiDatatablesColumns: MUIDataTableColumnDef[] = [
     }
   },
   {
-    label: lang("cars.grid.description"),
+    label: lang("cars.entity.description"),
     name: "description",
     options: {
       filter: false,
@@ -26,7 +26,7 @@ export const muiDatatablesColumns: MUIDataTableColumnDef[] = [
     }
   },
   {
-    label: lang("cars.grid.brand"),
+    label: lang("cars.entity.brand"),
     name: "brand.name",
     options: {
       filter: true,
@@ -34,7 +34,7 @@ export const muiDatatablesColumns: MUIDataTableColumnDef[] = [
     }
   },
   {
-    label: lang("cars.grid.year"),
+    label: lang("cars.entity.year"),
     name: "year",
     options: {
       filter: true,
@@ -42,7 +42,7 @@ export const muiDatatablesColumns: MUIDataTableColumnDef[] = [
     }
   },
   {
-    label: lang("cars.grid.color"),
+    label: lang("cars.entity.color"),
     name: "color.name",
     options: {
       filter: true,

@@ -62,7 +62,7 @@ const IndexPage = (props: any) => {
         onClick={() => props.history.push(CAR_ROUTES.CREATE)}
         startIcon={<AddCircle />}
       >
-        Novo Carro
+        {lang("cars.newCarLabel")}
       </Button>
       <Grid container spacing={2}>
         <Grid item xs={12} md={12} lg={12}>

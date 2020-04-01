@@ -19,6 +19,7 @@ import ICar, { ICarPhoto } from "../../../domains/car/ICar";
 import { slug } from "../../../core/utils";
 import CarForm from "./CarForm";
 import CarValidators from "../../../domains/car/CarValidator";
+import lang from "../../../lang";
 
 const FormPage = (props: any) => {
   const classes = styles();
@@ -191,7 +192,7 @@ const FormPage = (props: any) => {
       })
       .then(() => {
         props.history.push(CAR_ROUTES.INDEX, {
-          snackMessage: "A oferta de carro foi salva com sucesso",
+          snackMessage: lang("cars.form.successMessage"),
           snackSeverity: "success"
         });
       })

@@ -14,6 +14,7 @@ import { ICarPhoto } from "../../ICar";
 import styles from "./styles";
 import LabelFeatured from "./LabelFeatured";
 import SwitchFeatured from "./SwitchFeatured";
+import lang from "../../../../lang";
 
 interface IProps {
   photos: ICarPhoto[];
@@ -27,13 +28,7 @@ interface IProps {
 }
 
 const CarGallery: FC<IProps> = (props: IProps) => {
-  const {
-    photos,
-    onToggleFeatured,
-    onRemovePhoto,
-    showActions = true,
-    disableFeature = false
-  } = props;
+  const { photos, onRemovePhoto, showActions = true } = props;
 
   const classes = styles();
 
@@ -46,7 +41,7 @@ const CarGallery: FC<IProps> = (props: IProps) => {
               <CardMedia
                 className={classes.media}
                 image={photo.image}
-                title="Title"
+                title="Car title"
               />
             </CardActionArea>
             <CardContent>
@@ -60,7 +55,7 @@ const CarGallery: FC<IProps> = (props: IProps) => {
                   control={
                     <SwitchFeatured photo={photo} index={i} {...props} />
                   }
-                  label="Foto Destaque"
+                  label={lang("cars.form.featuredPhoto")}
                 />
               )}
             </CardContent>

@@ -8,6 +8,7 @@ import EditIcon from "@material-ui/icons/Edit";
 import { CAR_ROUTES } from "../../../routes/cars";
 import ICar from "../ICar";
 import CarService from "../CarService";
+import lang from "../../../lang";
 
 const CarsGrid: React.FC<IProps> = props => {
   const {
@@ -23,7 +24,7 @@ const CarsGrid: React.FC<IProps> = props => {
     textLabels: {
       body: {
         noMatch: loading ? (
-          "Sinto muito, não existe nenhum registro a ser mostrado."
+          lang("general.noResultsOnGrid")
         ) : (
           <CircularProgress disableShrink />
         )
@@ -43,7 +44,7 @@ const CarsGrid: React.FC<IProps> = props => {
 
           return (
             <>
-              <Tooltip title="Ver detalhes deste registro">
+              <Tooltip title={lang("general.viewTooltipLabel")}>
                 <IconButton
                   onClick={() => {
                     props.history.push(
@@ -55,7 +56,7 @@ const CarsGrid: React.FC<IProps> = props => {
                   <VisibilityIcon />
                 </IconButton>
               </Tooltip>
-              <Tooltip title="Editar este registro">
+              <Tooltip title={lang("general.updateTooltipLabel")}>
                 <IconButton
                   onClick={() => {
                     props.history.push(CAR_ROUTES.UPDATE.replace(":id", rowId));
@@ -65,19 +66,17 @@ const CarsGrid: React.FC<IProps> = props => {
                   <EditIcon />
                 </IconButton>
               </Tooltip>
-              <Tooltip title="Remover este registro">
+              <Tooltip title={lang("general.removeTooltipLabel")}>
                 <IconButton
                   onClick={() => {
-                    if (
-                      !window.confirm("Deseja realmente remover esta oferta?")
-                    ) {
+                    if (!window.confirm(lang("general.confirmDeleteMessage"))) {
                       return false;
                     }
                     CarService.build()
                       .delete(rowId)
                       .then(() => {
                         props.history.push(CAR_ROUTES.INDEX, {
-                          snackMessage: "A oferta de carro foi removida.",
+                          snackMessage: lang("cars.form.deleteMessage"),
                           snackSeverity: "success"
                         });
                       });
