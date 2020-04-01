@@ -46,7 +46,9 @@ const CarsGrid: React.FC<IProps> = props => {
               <Tooltip title="Ver detalhes deste registro">
                 <IconButton
                   onClick={() => {
-                    props.history.push(CAR_ROUTES.SHOW.replace(":id", rowId));
+                    props.history.push(
+                      CAR_ROUTES.DETAILS.replace(":id", rowId)
+                    );
                   }}
                   aria-label="view"
                 >
