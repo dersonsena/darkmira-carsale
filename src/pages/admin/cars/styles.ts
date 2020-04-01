@@ -45,10 +45,24 @@ export default makeStyles(theme => ({
     flexDirection: "row",
     justifyContent: "space-between"
   },
-  card: {
-    width: 260
+  detailHeader: {},
+  brandInfo: {
+    display: "flex",
+    flexDirection: "row"
   },
-  media: {
-    height: 140
+  brandName: {
+    fontWeight: "bold",
+    marginRight: 6,
+    letterSpacing: -2
+  },
+  modelName: {
+    fontWeight: "bold",
+    letterSpacing: -2
+  },
+  carDescription: {
+    color: "#999"
+  },
+  infoContainer: {
+    marginTop: 10
   }
 }));

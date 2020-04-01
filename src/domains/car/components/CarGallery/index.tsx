@@ -4,19 +4,19 @@ import {
   CardActionArea,
   CardMedia,
   CardContent,
-  Switch,
   Grid,
   CardActions,
   Typography,
   FormControlLabel,
-  Button,
-  Divider
+  Button
 } from "@material-ui/core";
-import { ICarPhoto } from "../ICar";
+import { ICarPhoto } from "../../ICar";
+import styles from "./styles";
+import LabelFeatured from "./LabelFeatured";
+import SwitchFeatured from "./SwitchFeatured";
 
 interface IProps {
   photos: ICarPhoto[];
-  classes?: any;
   showActions?: boolean;
   disableFeature?: boolean;
   onRemovePhoto?: (
@@ -26,49 +26,16 @@ interface IProps {
   onToggleFeatured?: (event: React.ChangeEvent, index: number) => void;
 }
 
-const SwitchFeatured = (props: any) => (
-  <Switch
-    checked={props.photo.featured}
-    disabled={props.disableFeature}
-    onChange={(event: any) => {
-      if (props.onToggleFeatured) props.onToggleFeatured(event, props.index);
-    }}
-    name={`photo-${props.index}`}
-    color="primary"
-  />
-);
-
-const LabelFeatured = (props: any) => {
-  const color = props.photo.featured ? "primary" : "initial";
-
-  return (
-    <Typography
-      variant="body1"
-      color={color}
-      style={{
-        fontWeight: "bold",
-        marginRight: 10,
-        marginLeft: 10,
-        marginTop: 10,
-        textAlign: "center",
-        cursor: "default"
-      }}
-      gutterBottom
-    >
-      Destaque: {props.photo.featured ? "SIM" : "NÃO"}
-    </Typography>
-  );
-};
-
 const CarGallery: FC<IProps> = (props: IProps) => {
   const {
     photos,
-    classes,
     onToggleFeatured,
     onRemovePhoto,
     showActions = true,
     disableFeature = false
   } = props;
+
+  const classes = styles();
 
   return (
     <>
