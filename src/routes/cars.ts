@@ -1,4 +1,3 @@
-import TempPage from "../pages/TempPage";
 import { IRoute } from "./index";
 import { SCOPES } from "./scopes";
 import lang from "../lang";
@@ -53,7 +52,7 @@ const routes: IRoute[] = [
   },
   {
     path: CAR_ROUTES.DELETE,
-    component: TempPage,
+    component: IndexPage,
     meta: {}
   },
   {
