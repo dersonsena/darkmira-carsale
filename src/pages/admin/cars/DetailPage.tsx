@@ -14,6 +14,7 @@ import CarService from "../../../domains/car/CarService";
 import ICar from "../../../domains/car/ICar";
 import initialFields from "./fields";
 import CarGallery from "../../../domains/car/components/CarGallery";
+import lang from "../../../lang";
 
 const DetailPage = (props: any) => {
   const classes = styles();
@@ -66,29 +67,29 @@ const DetailPage = (props: any) => {
             <section className={classes.infoContainer}>
               <Grid container spacing={3}>
                 <Grid item xs={4} md={4} lg={4}>
-                  <small>Ano</small>
+                  <small>{lang("cars.entity.year")}</small>
                   <Typography variant="h6">{car.year}</Typography>
                 </Grid>
                 <Grid item xs={4} md={4} lg={4}>
-                  <small>KM</small>
+                  <small>{lang("cars.entity.mileage")}</small>
                   <Typography variant="h6">{car.mileage}</Typography>
                 </Grid>
                 <Grid item xs={4} md={4} lg={4}>
-                  <small>Cidade</small>
+                  <small>{lang("cars.entity.city")}</small>
                   <Typography variant="h6">{car.city.name}</Typography>
                 </Grid>
               </Grid>
               <Grid container spacing={3}>
                 <Grid item xs={4} md={4} lg={4}>
-                  <small>Cor</small>
+                  <small>{lang("cars.entity.color")}</small>
                   <Typography variant="h6">{car.color.name}</Typography>
                 </Grid>
                 <Grid item xs={4} md={4} lg={4}>
-                  <small>Preço</small>
+                  <small>{lang("cars.entity.price")}</small>
                   <Typography variant="h6">R$ {car.price}</Typography>
                 </Grid>
                 <Grid item xs={4} md={4} lg={4}>
-                  <small>Placa</small>
+                  <small>{lang("cars.entity.board")}</small>
                   <Typography variant="h6">{car.board}</Typography>
                 </Grid>
               </Grid>

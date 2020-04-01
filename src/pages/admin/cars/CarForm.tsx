@@ -11,6 +11,7 @@ import IColor from "../../../domains/color/IColor";
 import IModel from "../../../domains/model/IModel";
 import ICity from "../../../domains/city/ICity";
 import CarGallery from "../../../domains/car/components/CarGallery";
+import lang from "../../../lang";
 
 interface IProps {
   fields: ICar;
@@ -49,7 +50,7 @@ const CarForm: FC<IProps> = (props: IProps) => {
     <form onSubmit={onSubmit} noValidate>
       <div className={classes.formContainer}>
         <TextField
-          label="Descrição"
+          label={lang("cars.entity.description")}
           name="description"
           value={fields.description}
           error={!!validators.description}
@@ -64,7 +65,7 @@ const CarForm: FC<IProps> = (props: IProps) => {
 
         <div>
           <TextField
-            label="Placa"
+            label={lang("cars.entity.board")}
             name="board"
             error={!!validators.board}
             helperText={validators.board}
@@ -77,7 +78,7 @@ const CarForm: FC<IProps> = (props: IProps) => {
             variant="outlined"
           />
           <TextField
-            label="Quilometragem"
+            label={lang("cars.entity.mileage")}
             name="mileage"
             value={fields.mileage}
             error={!!validators.mileage}
@@ -91,7 +92,7 @@ const CarForm: FC<IProps> = (props: IProps) => {
           />
           <TextField
             select
-            label="Ano"
+            label={lang("cars.entity.year")}
             name="year"
             error={!!validators.year}
             helperText={validators.year}
@@ -102,7 +103,7 @@ const CarForm: FC<IProps> = (props: IProps) => {
             className={classes.textField}
             variant="outlined"
           >
-            <MenuItem value="">:: Selecione ::</MenuItem>
+            <MenuItem value="">{lang("general.defaultOptionLabel")}</MenuItem>
             {yearsOptions().map((year: number) => (
               <MenuItem key={year} value={year}>
                 {year}
@@ -110,7 +111,7 @@ const CarForm: FC<IProps> = (props: IProps) => {
             ))}
           </TextField>
           <TextField
-            label="Preço"
+            label={lang("cars.entity.price")}
             name="price"
             value={fields.price}
             error={!!validators.price}
@@ -126,7 +127,7 @@ const CarForm: FC<IProps> = (props: IProps) => {
           <TextField
             select
             name="brand"
-            label="Marca"
+            label={lang("cars.entity.brand")}
             error={!!validators.brand}
             helperText={validators.brand}
             required
@@ -136,7 +137,7 @@ const CarForm: FC<IProps> = (props: IProps) => {
             className={classes.textField}
             variant="outlined"
           >
-            <MenuItem value="">:: Selecione ::</MenuItem>
+            <MenuItem value="">{lang("general.defaultOptionLabel")}</MenuItem>
             {brands.map((row: any, i: number) => (
               <MenuItem key={i} value={row.id}>
                 {row.name}
@@ -146,7 +147,7 @@ const CarForm: FC<IProps> = (props: IProps) => {
 
           <TextField
             select
-            label="Modelo"
+            label={lang("cars.entity.model")}
             name="model"
             error={!!validators.model}
             helperText={validators.model}
@@ -158,7 +159,7 @@ const CarForm: FC<IProps> = (props: IProps) => {
             disabled={fields.brand.id === ""}
             variant="outlined"
           >
-            <MenuItem value="">:: Selecione ::</MenuItem>
+            <MenuItem value="">{lang("general.defaultOptionLabel")}</MenuItem>
             {models.map((row: any, i: number) => (
               <MenuItem key={i} value={row.id}>
                 {row.name}
@@ -174,12 +175,12 @@ const CarForm: FC<IProps> = (props: IProps) => {
             required
             value={fields.color.id}
             onChange={onChangeSelect}
-            label="Cor"
+            label={lang("cars.entity.color")}
             style={{ margin: 10 }}
             className={classes.textField}
             variant="outlined"
           >
-            <MenuItem value="">:: Selecione ::</MenuItem>
+            <MenuItem value="">{lang("general.defaultOptionLabel")}</MenuItem>
             {colors.map((row: any, i: number) => (
               <MenuItem key={i} value={row.id}>
                 {row.name}
@@ -195,12 +196,12 @@ const CarForm: FC<IProps> = (props: IProps) => {
             required
             value={fields.city.id}
             onChange={onChangeSelect}
-            label="Cidade"
+            label={lang("cars.entity.city")}
             style={{ margin: 10 }}
             className={classes.textField}
             variant="outlined"
           >
-            <MenuItem value="">:: Selecione ::</MenuItem>
+            <MenuItem value="">{lang("general.defaultOptionLabel")}</MenuItem>
             {cities.map((row: any, i: number) => (
               <MenuItem key={i} value={row.id}>
                 {row.name}
@@ -219,7 +220,7 @@ const CarForm: FC<IProps> = (props: IProps) => {
               onChange={onCapturePhoto}
             >
               <AddPhotoAlternateIcon />
-              Selecionar Fotos da Oferta
+              {lang("cars.form.photoButtonLabel")}
               <Input
                 value=""
                 name="photos"
@@ -248,7 +249,7 @@ const CarForm: FC<IProps> = (props: IProps) => {
           color="primary"
           startIcon={<SaveIcon />}
         >
-          Salvar
+          {lang("general.saveButtonLabel")}
         </Button>
       </div>
     </form>

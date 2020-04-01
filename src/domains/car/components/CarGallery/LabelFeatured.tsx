@@ -1,6 +1,7 @@
-import styles from "./styles";
 import { Typography } from "@material-ui/core";
 import React from "react";
+import styles from "./styles";
+import lang from "../../../../lang";
 
 const LabelFeatured = (props: any) => {
   const color = props.photo.featured ? "primary" : "initial";
@@ -13,7 +14,8 @@ const LabelFeatured = (props: any) => {
       className={classes.featuredLabel}
       gutterBottom
     >
-      Destaque: {props.photo.featured ? "SIM" : "NÃO"}
+      {lang("cars.form.featuredPhoto")}:{" "}
+      {props.photo.featured ? lang("general.yes") : lang("general.no")}
     </Typography>
   );
 };
