@@ -28,6 +28,11 @@ export const slug = (text: string, options: object = {}): string => {
 
 export const currencyFormat = (num: any, decimals: number = 2) => {
   const numberToFormat = parseFloat(num);
+
+  if (isNaN(numberToFormat)) {
+    return "";
+  }
+
   return numberToFormat
     .toFixed(decimals)
     .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
