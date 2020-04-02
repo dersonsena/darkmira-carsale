@@ -1,0 +1,37 @@
+@-webkit-keyframes placeHolderShimmer{
+    0%{
+        background-position:-100vw 95px
+    }
+    to{
+        background-position:100vw 95px
+    }
+}
+@keyframes placeHolderShimmer{
+    0%{
+        background-position:-100vw 95px
+    }
+    to{
+        background-position:100vw 95px
+    }
+}
+.PlaceHolder{
+    background:-webkit-gradient(linear,left top,right top,from(hsla(0,0%,66.7%,.267)),color-stop(10%,hsla(0,0%,46.7%,.3)),color-stop(20%,hsla(0,0%,66.7%,.267)));
+    background:linear-gradient(90deg,hsla(0,0%,66.7%,.267) 0,hsla(0,0%,46.7%,.3) 10%,hsla(0,0%,66.7%,.267) 20%);
+    width:100%;
+    max-width:100%;
+    height: 100%;
+    -webkit-box-sizing:border-box;
+    box-sizing:border-box;
+    display:inline-block;
+    -webkit-animation-duration:1.3s;
+    animation-duration:1.3s;
+    -webkit-animation-fill-mode:forwards;
+    animation-fill-mode:forwards;
+    -webkit-animation-iteration-count:infinite;
+    animation-iteration-count:infinite;
+    -webkit-animation-name:placeHolderShimmer;
+    animation-name:placeHolderShimmer;
+    -webkit-animation-timing-function:linear;
+    animation-timing-function:linear;
+    background-size:100vw
+}

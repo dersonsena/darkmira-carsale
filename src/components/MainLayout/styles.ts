@@ -6,6 +6,9 @@ export default makeStyles(theme => ({
     flexDirection: "column",
     minHeight: "100vh"
   },
+  appBar: {
+    zIndex: 1
+  },
   main: {
     marginBottom: theme.spacing(2)
   },

@@ -12,6 +12,7 @@ import { currencyFormat } from "../../../../../core/utils";
 
 interface IProps {
   car: ICar;
+  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const CarCardList: FC<IProps> = (props: IProps) => {
@@ -23,7 +24,7 @@ const CarCardList: FC<IProps> = (props: IProps) => {
 
   return (
     <Card className={classes.container}>
-      <CardActionArea className={classes.cardArea}>
+      <CardActionArea onClick={props.onClick} className={classes.cardArea}>
         <CardMedia
           className={classes.media}
           component="img"

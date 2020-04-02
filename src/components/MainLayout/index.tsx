@@ -12,6 +12,7 @@ import lang from "../../lang";
 import routes, { IRoute } from "../../routes";
 import { HOME_ROUTES } from "../../routes/home";
 import { CAR_ROUTES } from "../../routes/cars";
+import "react-image-lightbox/style.css";
 
 const Copyright = () => {
   return (
@@ -35,7 +36,7 @@ const MainLayout = () => {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="static">
+      <AppBar className={classes.appBar} position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
             {lang("general.appName")}

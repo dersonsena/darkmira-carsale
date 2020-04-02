@@ -13,6 +13,7 @@ import { currencyFormat } from "../../../../../core/utils";
 
 interface IProps {
   car: ICar;
+  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const CarCard: FC<IProps> = (props: IProps) => {
@@ -24,7 +25,7 @@ const CarCard: FC<IProps> = (props: IProps) => {
 
   return (
     <Card className={classes.container}>
-      <CardActionArea>
+      <CardActionArea onClick={props.onClick}>
         <CardMedia
           className={classes.media}
           image={featuredImage.firebaseUrl}
