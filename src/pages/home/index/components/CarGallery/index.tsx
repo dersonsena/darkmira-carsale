@@ -36,7 +36,9 @@ const FeaturedOffers: FC<IProps> = (props: IProps) => {
         <CarCardGrid car={car} key={index} />
       </Grid>
     ) : (
-      <CarCardList car={car} key={index} />
+      <Grid key={index} item xs={12} sm={12} md={12} lg={12}>
+        <CarCardList car={car} key={index} />
+      </Grid>
     );
 
   return (

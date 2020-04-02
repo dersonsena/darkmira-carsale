@@ -9,6 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import VisibilityIcon from "@material-ui/icons/Visibility";
+import { currencyFormat } from "../../../../../core/utils";
 
 interface IProps {
   car: ICar;
@@ -38,7 +39,7 @@ const CarCard: FC<IProps> = (props: IProps) => {
           </Typography>
           <div className={classes.boxDivider}>{""}</div>
           <Typography variant="h6" gutterBottom className={classes.price}>
-            R$ {car.price}
+            R$ {currencyFormat(car.price, 0)}
           </Typography>
           <div className={classes.details}>
             <Typography
@@ -53,7 +54,7 @@ const CarCard: FC<IProps> = (props: IProps) => {
               display="block"
               className={classes.detailsLabel}
             >
-              {car.mileage} KM
+              {currencyFormat(car.mileage, 0)} KM
             </Typography>
           </div>
           <Divider />
