@@ -34,7 +34,7 @@ const IndexPage = (props: any) => {
   return (
     <Container maxWidth="lg" className={classes.container}>
       <BrandOffers brands={brands} />
-      <FeaturedOffers offers={featuredOffers} />
+      <FeaturedOffers history={props.history} offers={featuredOffers} />
     </Container>
   );
 };

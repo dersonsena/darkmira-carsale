@@ -9,6 +9,7 @@ import GridOnIcon from "@material-ui/icons/GridOn";
 import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
 import CarCardList from "../CarCardList";
+import { HOME_ROUTES } from "../../../../../routes/home";
 
 export enum VIEW_MODE {
   GRID = "grid",
@@ -17,6 +18,7 @@ export enum VIEW_MODE {
 
 interface IProps {
   offers: ICar[];
+  history: any;
 }
 
 const FeaturedOffers: FC<IProps> = (props: IProps) => {
@@ -30,14 +32,34 @@ const FeaturedOffers: FC<IProps> = (props: IProps) => {
     setViewMode(newMode);
   };
 
+  const handleOnClickCar = (
+    event: React.MouseEvent<HTMLButtonElement>,
+    car: ICar
+  ) => {
+    const route = HOME_ROUTES.DETAILS.replace(":brand", car.brand.slug)
+      .replace(":model", car.model.slug)
+      .replace(":year", car.year.toString())
+      .replace(":description", car.slug);
+
+    props.history.push(route);
+  };
+
   const getCarViewModeComponent = (car: ICar, index: number) =>
     viewMode === VIEW_MODE.GRID ? (
       <Grid key={index} item xs={6} sm={4} md={3} lg={3}>
-        <CarCardGrid car={car} key={index} />
+        <CarCardGrid
+          onClick={e => handleOnClickCar(e, car)}
+          car={car}
+          key={index}
+        />
       </Grid>
     ) : (
       <Grid key={index} item xs={12} sm={12} md={12} lg={12}>
-        <CarCardList car={car} key={index} />
+        <CarCardList
+          onClick={e => handleOnClickCar(e, car)}
+          car={car}
+          key={index}
+        />
       </Grid>
     );
 
