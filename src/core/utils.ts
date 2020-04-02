@@ -25,3 +25,10 @@ export const get = (element: any, path: any, fallback: any): any => {
 export const slug = (text: string, options: object = {}): string => {
   return slugify(text, options).toLowerCase();
 };
+
+export const currencyFormat = (num: any, decimals: number = 2) => {
+  const numberToFormat = parseFloat(num);
+  return numberToFormat
+    .toFixed(decimals)
+    .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
+};
