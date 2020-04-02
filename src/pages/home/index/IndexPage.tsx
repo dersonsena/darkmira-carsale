@@ -14,7 +14,7 @@ import BrandOffers from "./components/BrandOffers";
 import BrandOfferItem from "./components/BrandOffers/BrandOfferItem";
 import ICar from "../../../domains/car/ICar";
 import CarService from "../../../domains/car/CarService";
-import FeaturedOffers from "./components/FeaturedOffers";
+import FeaturedOffers from "./components/CarGallery";
 
 const IndexPage = (props: any) => {
   const classes = styles();

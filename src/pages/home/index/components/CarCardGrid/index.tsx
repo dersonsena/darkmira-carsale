@@ -12,7 +12,6 @@ import VisibilityIcon from "@material-ui/icons/Visibility";
 
 interface IProps {
   car: ICar;
-  key: number;
 }
 
 const CarCard: FC<IProps> = (props: IProps) => {
