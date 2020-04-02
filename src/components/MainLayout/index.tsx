@@ -12,6 +12,7 @@ import lang from "../../lang";
 import routes, { IRoute } from "../../routes";
 import { HOME_ROUTES } from "../../routes/home";
 import { CAR_ROUTES } from "../../routes/cars";
+import "react-image-lightbox/style.css";
 
 const Copyright = () => {
   return (

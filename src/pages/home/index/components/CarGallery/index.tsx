@@ -10,6 +10,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
 import CarCardList from "../CarCardList";
 import { HOME_ROUTES } from "../../../../../routes/home";
+import FakeCarCard from "../FakeCarCard";
 
 export enum VIEW_MODE {
   GRID = "grid",
@@ -19,6 +20,7 @@ export enum VIEW_MODE {
 interface IProps {
   offers: ICar[];
   history: any;
+  loading: boolean;
 }
 
 const FeaturedOffers: FC<IProps> = (props: IProps) => {
@@ -90,8 +92,19 @@ const FeaturedOffers: FC<IProps> = (props: IProps) => {
           </IconButton>
         </div>
       </Grid>
-      {props.offers.map((car: ICar, i: number) =>
-        getCarViewModeComponent(car, i)
+
+      {props.loading ? (
+        <Grid container spacing={3}>
+          {Array.from({ length: 4 }, (i: number) => (
+            <Grid key={i} item xs={6} sm={4} md={3} lg={3}>
+              <FakeCarCard />
+            </Grid>
+          ))}
+        </Grid>
+      ) : (
+        props.offers.map((car: ICar, i: number) =>
+          getCarViewModeComponent(car, i)
+        )
       )}
     </Grid>
   );

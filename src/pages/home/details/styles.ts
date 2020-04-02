@@ -1,6 +1,6 @@
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, Theme } from "@material-ui/core/styles";
 
-export default makeStyles(theme => ({
+export default makeStyles((theme: Theme) => ({
   container: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4)
@@ -19,11 +19,13 @@ export default makeStyles(theme => ({
   headerTitles: {
     fontWeight: "bold",
     marginRight: theme.spacing(0.5),
-    letterSpacing: -2
+    letterSpacing: -2,
+    textTransform: "uppercase"
   },
   description: {
     color: "#6E6E7C",
-    letterSpacing: -0.5
+    letterSpacing: -0.5,
+    textTransform: "uppercase"
   },
   carDetails: {
     marginTop: theme.spacing(5)
@@ -41,5 +43,9 @@ export default makeStyles(theme => ({
     padding: theme.spacing(0.6),
     border: "1px solid #ccc",
     borderRadius: 5
+  },
+  price: {
+    fontWeight: "bold",
+    letterSpacing: -3
   }
 }));

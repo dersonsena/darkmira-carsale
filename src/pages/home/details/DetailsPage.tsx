@@ -14,7 +14,9 @@ import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import Image from "material-ui-image";
 import Lightbox from "react-image-lightbox";
-import "react-image-lightbox/style.css"; // This only needs to be imported once in your app
+import TextField from "@material-ui/core/TextField";
+import Icon from "@material-ui/core/Icon";
+import Button from "@material-ui/core/Button";
 
 const DetailsPage = (props: any) => {
   const classes = styles();
@@ -69,37 +71,57 @@ const DetailsPage = (props: any) => {
           <Paper className={classes.paperContainer}>
             <header className={classes.headerContainer}>
               <Typography className={classes.headerTitles} variant="h4">
-                TOYOTA
+                {car.brand.name ? (
+                  car.brand.name
+                ) : (
+                  <CircularProgress size={20} />
+                )}
               </Typography>
               <Typography
                 className={classes.headerTitles}
                 color="secondary"
                 variant="h4"
               >
-                COROLLA
+                {car.model.name ? (
+                  car.model.name
+                ) : (
+                  <CircularProgress size={20} />
+                )}
               </Typography>
             </header>
             <Typography variant="body1" className={classes.description}>
-              1.6 16V MSI TOTALFLEX 4P AUTOMÁTICO
+              {car.description ? (
+                car.description
+              ) : (
+                <CircularProgress size={20} />
+              )}
             </Typography>
             <section className={classes.carDetails}>
               <Grid container spacing={3}>
                 <Grid item xs={4} sm={4} md={4} lg={4}>
                   <small>{lang("cars.entity.year")}</small>
                   <Typography variant="h6" className={classes.detailValues}>
-                    {car.year}
+                    {car.year ? car.year : <CircularProgress size={20} />}
                   </Typography>
                 </Grid>
                 <Grid item xs={4} sm={4} md={4} lg={4}>
                   <small>{lang("cars.entity.mileage")}</small>
                   <Typography variant="h6" className={classes.detailValues}>
-                    {currencyFormat(car.mileage)}
+                    {car.mileage ? (
+                      currencyFormat(car.mileage, 0) + " KM"
+                    ) : (
+                      <CircularProgress size={20} />
+                    )}
                   </Typography>
                 </Grid>
                 <Grid item xs={4} sm={4} md={4} lg={4}>
                   <small>{lang("cars.entity.city")}</small>
                   <Typography variant="h6" className={classes.detailValues}>
-                    {car.city.name}
+                    {car.city.name ? (
+                      car.city.name
+                    ) : (
+                      <CircularProgress size={20} />
+                    )}
                   </Typography>
                 </Grid>
               </Grid>
@@ -107,19 +129,23 @@ const DetailsPage = (props: any) => {
                 <Grid item xs={4} sm={4} md={4} lg={4}>
                   <small>{lang("cars.entity.color")}</small>
                   <Typography variant="h6" className={classes.detailValues}>
-                    {car.color.name}
-                  </Typography>
-                </Grid>
-                <Grid item xs={4} sm={4} md={4} lg={4}>
-                  <small>{lang("cars.entity.price")}</small>
-                  <Typography variant="h6" className={classes.detailValues}>
-                    R$ {currencyFormat(car.price, 0)}
+                    {car.color.name ? (
+                      car.color.name
+                    ) : (
+                      <CircularProgress size={20} />
+                    )}
                   </Typography>
                 </Grid>
                 <Grid item xs={4} sm={4} md={4} lg={4}>
                   <small>{lang("cars.entity.board")}</small>
                   <Typography variant="h6" className={classes.detailValues}>
-                    {car.board}
+                    {car.board ? car.board : <CircularProgress size={20} />}
+                  </Typography>
+                </Grid>
+                <Grid item xs={4} sm={4} md={4} lg={4}>
+                  <small>Visualizações</small>
+                  <Typography variant="h6" className={classes.detailValues}>
+                    110
                   </Typography>
                 </Grid>
               </Grid>
@@ -179,7 +205,58 @@ const DetailsPage = (props: any) => {
           </Paper>
         </Grid>
         <Grid item xs={12} sm={12} md={4} lg={4}>
-          <Paper className={classes.paperContainer}></Paper>
+          <Paper className={classes.paperContainer}>
+            <Typography variant="h3" className={classes.price}>
+              R$ {currencyFormat(car.price, 0)}
+            </Typography>
+            <Typography variant="body2" gutterBottom>
+              Gosto desse carro? Envie uma mensagem ao vendedor
+            </Typography>
+            <form noValidate autoComplete="off">
+              <TextField
+                label="Seu nome:"
+                variant="outlined"
+                fullWidth
+                required
+                style={{ marginBottom: 15 }}
+              />
+              <TextField
+                label="Seu e-mail:"
+                placeholder="user@domail.com.br"
+                variant="outlined"
+                fullWidth
+                required
+                style={{ marginBottom: 15 }}
+              />
+              <TextField
+                label="Seu telefone:"
+                placeholder="(99) 9.9999-9999"
+                variant="outlined"
+                fullWidth
+                required
+                style={{ marginBottom: 15 }}
+              />
+              <TextField
+                label="Seu telefone:"
+                defaultValue={`Olá, tenho interesse nesse veículo. Por favor entre em contato comigo para negociarmos.`}
+                variant="outlined"
+                multiline
+                fullWidth
+                required
+                rows={8}
+                style={{ marginBottom: 15 }}
+              />
+              <Button
+                variant="contained"
+                color="primary"
+                fullWidth
+                size="large"
+                endIcon={<Icon>send</Icon>}
+              >
+                Enviar
+              </Button>
+            </form>
+          </Paper>
         </Grid>
       </Grid>
     </Container>
