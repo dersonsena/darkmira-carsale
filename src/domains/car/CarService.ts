@@ -4,10 +4,6 @@ import ICar, { ICarPhoto } from "./ICar";
 export default class CarService extends ServiceAbstract {
   protected collectionName: string = "cars";
 
-  static build(options = {}) {
-    return new this(options);
-  }
-
   async uploadPhoto(photo: ICarPhoto, index: number = 0) {
     const imageName = `${+new Date()}-${photo.name}`;
     const storageRef = this.getStorage().ref(`images/${imageName}`);
@@ -22,6 +18,7 @@ export default class CarService extends ServiceAbstract {
   async getFeaturedOffers() {
     return this.getFirestore()
       .collection(this.collectionName)
+      .where("activated", "==", true)
       .orderBy("views", "desc")
       .get()
       .then(snapshot => {

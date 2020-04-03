@@ -4,11 +4,19 @@ import IndexPage from "../pages/home/index/IndexPage";
 import DetailPage from "../pages/home/details/DetailsPage";
 
 export enum HOME_ROUTES {
+  ROOT = "/",
   INDEX = "/home",
   DETAILS = "/offer/:brand/:model/:year/:description/:id"
 }
 
 const routes: IRoute[] = [
+  {
+    path: HOME_ROUTES.ROOT,
+    component: IndexPage,
+    meta: {
+      breadcrumb: [{ text: lang("home.title"), to: null }]
+    }
+  },
   {
     path: HOME_ROUTES.INDEX,
     component: IndexPage,

@@ -1,44 +1,115 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Darkmira Challenge - React JS Position
 
-## Available Scripts
+Developed by: Kilderson Sena ([@dersonsena](https://github.com/dersonsena))
 
-In the project directory, you can run:
+In this project you'll be able to run an online car sales shop, using [React](https://reactjs.org) + [Material UI](https://material-ui.com) to build the entire frontend and all storage made by [Firebase](https://firebase.google.com) with Firestore.
 
-### `yarn start`
+## Home Page
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+![HomePage1](/docs/screenshot-1.png)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+![HomePage1](/docs/screenshot-2.png)
 
-### `yarn test`
+![HomePage1](/docs/screenshot-4.png)
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Admin
 
-### `yarn build`
+![HomePage1](/docs/screenshot-3.png)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Internacionalization
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+I developed an internationalization layer in the project to improve the UX of foreign users. The way it was designed, it is very easy to add new languages for application.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![GitFlow](/docs/screenshot-5.png)
 
-### `yarn eject`
+![GitFlow](/docs/screenshot-6.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Prerequisites
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+It is mandatory requirement to run this project:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Node.js v10+
+- Yarn 1.22+
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Installation
 
-## Learn More
+### Repository Clone
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Open your terminal and clone this project:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+$ git clone git@github.com:dersonsena/darkmira-carsale.git
+```
+
+### `.env` file
+
+Enter the project directory and make a copy of `.env.example` renaming it to` .env` and fill in the environment variables:
+
+```bash
+$ cd darkmira-carsale
+$ cp .env.example .env
+``` 
+
+As it is sensitive data and necessary to run the application, Firebase access data will be sent by email.
+
+### Install Dependencies
+
+Run the command below to install the project dependencies:
+
+```bash
+$ yarn install
+```
+
+> **NOTE:** you can also use `npm` to install packages, however, `yarn` was used during the development process
+
+### Run Application
+
+Finally run the command below to run application:
+
+```bash
+yarn start
+```
+
+When executing this command, the output below should appear on your terminal:
+
+```bash
+Compiled successfully!
+
+You can now view darkmira-carsale in the browser.
+
+  Local:            http://localhost:3000
+  On Your Network:  http://<Your Ip Address>:3000
+
+Note that the development build is not optimized.
+To create a production build, use yarn build.
+```
+
+Now, just go to your browser and type `http://localhost:3000`.
+
+## Flows and Standards used
+
+### Create React App Boilerplate + Typescript
+
+In this project the boilerplate recommended by the maintainers of the tool was used using the CLI script called [create-react-app](https://facebook.github.io/create-react-app/docs/getting-started) with typed superset of JavaScript called by [Typescript](https://www.typescriptlang.org)
+
+### ESLinter + Prettier
+
+In this project, [ESLint](https://eslint.org) was used with [Prettier](https://prettier.io) for better code standardization. If someone happens to be part of the project development team, they will have to follow it.
+
+### CommitLint
+
+In this project, [CommitLinter](https://commitlint.js.org) was used in order to standardize also the commit messages of this project. 
+
+### GitFlow
+
+The GitFlow convention was used to organize the branches. The branches can be seen here in the repository as illustrated below:
+
+![GitFlow](/docs/branches.png)
+
+### Milestones
+
+The Github milestone system was used to organize all the issues necessary for the development of the project. You can see all the milestones [Clicking Here](https://github.com/dersonsena/darkmira-carsale/milestones?state=closed).
+
+### Tag
+
+I used a convention that each milestone reached would be a new release of the application. Then, for each milestone reached, a tag was created. To see all releases [Click Here](https://github.com/dersonsena/darkmira-carsale/releases)

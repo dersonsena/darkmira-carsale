@@ -10,7 +10,7 @@ import ColorService from "../../../domains/color/ColorService";
 import Breadcrumb from "../../../components/Breadcrumb";
 import { CAR_ROUTES } from "../../../routes/cars";
 import styles from "./styles";
-import initialFields from "./fields";
+import fieldsFactory from "./fields";
 import IBrand from "../../../domains/brand/IBrand";
 import IColor from "../../../domains/color/IColor";
 import ICity from "../../../domains/city/ICity";
@@ -25,6 +25,7 @@ const FormPage = (props: any) => {
   const classes = styles();
   const carId: string = props.match.params.id;
   const carService = CarService.build();
+  const initialFields = fieldsFactory();
 
   const [fields, setFields] = useState<ICar>(initialFields);
   const [validators, setValidators] = useState({});
@@ -91,7 +92,7 @@ const FormPage = (props: any) => {
         });
       })
       .finally(() => setLoading(false));
-  }, [carId, props.history]);
+  }, [carId, props.history, initialFields]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const name: string = event.target.name;
