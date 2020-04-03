@@ -14,7 +14,12 @@ export default {
     removeTooltipLabel: "Remove this record",
     confirmDeleteMessage: "Do you really want to remove this offer?",
     yes: "Yes",
-    no: "No"
+    no: "No",
+    selectLanguageText: "Select a idiom"
+  },
+  languages: {
+    en: "English",
+    ptBr: "Portuguese (BR)"
   },
   admin: {
     title: "Administration"

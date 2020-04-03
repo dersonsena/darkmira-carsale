@@ -14,7 +14,12 @@ export default {
     removeTooltipLabel: "Remover este registro",
     confirmDeleteMessage: "Deseja realmente remover esta oferta?",
     yes: "Sim",
-    no: "Não"
+    no: "Não",
+    selectLanguageText: "Selecione um Idioma"
+  },
+  languages: {
+    en: "Inglês",
+    ptBr: "Português (BR)"
   },
   admin: {
     title: "Administração"
