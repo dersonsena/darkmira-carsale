@@ -42,7 +42,8 @@ const FeaturedOffers: FC<IProps> = (props: IProps) => {
     const route = HOME_ROUTES.DETAILS.replace(":brand", car.brand.slug)
       .replace(":model", car.model.slug)
       .replace(":year", car.year.toString())
-      .replace(":description", car.slug);
+      .replace(":description", car.slug)
+      .replace(":id", car.id.toString());
 
     props.history.push(route);
   };

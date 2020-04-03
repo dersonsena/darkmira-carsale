@@ -28,7 +28,7 @@ const DetailsPage = (props: any) => {
   const [imageUrlList, setImageUrlList] = useState([]);
 
   useEffect(() => {
-    const carId = "zWZVtFdNdOHYq0nlUhbR";
+    const carId = props.match.params.id;
 
     setLoading(true);
 
