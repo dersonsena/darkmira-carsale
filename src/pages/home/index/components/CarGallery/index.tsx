@@ -95,8 +95,8 @@ const FeaturedOffers: FC<IProps> = (props: IProps) => {
 
       {props.loading ? (
         <Grid container spacing={3}>
-          {Array.from({ length: 4 }, (i: number) => (
-            <Grid key={i} item xs={6} sm={4} md={3} lg={3}>
+          {Array.from({ length: 4 }, (v: number, k: number) => (
+            <Grid key={k} item xs={6} sm={4} md={3} lg={3}>
               <FakeCarCard />
             </Grid>
           ))}

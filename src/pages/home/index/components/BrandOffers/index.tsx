@@ -22,8 +22,8 @@ const BrandOffers: FC<IProps> = (props: IProps) => {
         </Typography>
       </Grid>
       {props.loading
-        ? Array.from({ length: 6 }, (i: number) => (
-            <Grid item xs={6} sm={4} md={2} lg={2}>
+        ? Array.from({ length: 6 }, (v: number, k: number) => (
+            <Grid key={k} item xs={6} sm={4} md={2} lg={2}>
               <FakeBrandCard />
             </Grid>
           ))
