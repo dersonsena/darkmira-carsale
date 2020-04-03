@@ -6,9 +6,14 @@ import { ICarPhoto } from "../../domains/car/ICar";
 export default abstract class ServiceAbstract {
   protected abstract collectionName: string;
 
-  private storage: firebase.storage.Storage;
+  private readonly storage: firebase.storage.Storage;
 
-  private firestore: firebase.firestore.Firestore;
+  private readonly firestore: firebase.firestore.Firestore;
+
+  static build(options = {}) {
+    // @ts-ignore
+    return new this(options);
+  }
 
   constructor(options = {}) {
     this.firestore = firestore;

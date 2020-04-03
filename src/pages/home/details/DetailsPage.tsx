@@ -36,7 +36,7 @@ const DetailsPage = (props: any) => {
 
     carService
       .getById(carId)
-      .then(document => {
+      .then((document: any) => {
         setCar(document);
         setBreadcrumbItems([
           { text: document.brand.name, to: null },
@@ -51,7 +51,7 @@ const DetailsPage = (props: any) => {
 
         return carService.addViewToOffer(document);
       })
-      .then(totalViews => setViews(totalViews))
+      .then((totalViews: number) => setViews(totalViews))
       .finally(() => setLoading(false));
   }, [props.match.params.id]);
 
