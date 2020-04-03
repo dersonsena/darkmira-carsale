@@ -9,7 +9,7 @@ import lang from "../../../lang";
 import ICar, { ICarPhoto } from "../../../domains/car/ICar";
 import initialFields from "../../admin/cars/fields";
 import CarService from "../../../domains/car/CarService";
-import { currencyFormat } from "../../../core/utils";
+import { currencyFormat, timestampToDateString } from "../../../core/utils";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import Image from "material-ui-image";
@@ -94,9 +94,11 @@ const DetailsPage = (props: any) => {
                 )}
               </Typography>
             </header>
-            <Typography variant="body1" className={classes.description}>
+            <Typography variant="h6" className={classes.description}>
               {car.description ? (
-                car.description
+                `${car.description} | ${lang(
+                  "cars.entity.createdAt"
+                )}: ${timestampToDateString(car.createdAt.getTime())}`
               ) : (
                 <CircularProgress size={20} />
               )}

@@ -15,6 +15,7 @@ import ICar from "../../../domains/car/ICar";
 import initialFields from "./fields";
 import CarGallery from "../../../domains/car/components/CarGallery";
 import lang from "../../../lang";
+import { currencyFormat, timestampToDateString } from "../../../core/utils";
 
 const DetailPage = (props: any) => {
   const classes = styles();
@@ -60,7 +61,10 @@ const DetailPage = (props: any) => {
                 variant="subtitle1"
                 gutterBottom
               >
-                {car.description}
+                {!loading &&
+                  `${car.description} | ${lang(
+                    "cars.entity.createdAt"
+                  )}: ${timestampToDateString(car.createdAt.getTime())}`}
               </Typography>
             </header>
             <Divider light={true} />
@@ -72,7 +76,9 @@ const DetailPage = (props: any) => {
                 </Grid>
                 <Grid item xs={3} md={3} lg={3}>
                   <small>{lang("cars.entity.mileage")}</small>
-                  <Typography variant="h6">{car.mileage}</Typography>
+                  <Typography variant="h6">
+                    {currencyFormat(car.mileage, 0)}
+                  </Typography>
                 </Grid>
                 <Grid item xs={3} md={3} lg={3}>
                   <small>{lang("cars.entity.city")}</small>
@@ -92,7 +98,9 @@ const DetailPage = (props: any) => {
                 </Grid>
                 <Grid item xs={3} md={3} lg={3}>
                   <small>{lang("cars.entity.price")}</small>
-                  <Typography variant="h6">R$ {car.price}</Typography>
+                  <Typography variant="h6">
+                    R$ {currencyFormat(car.price, 0)}
+                  </Typography>
                 </Grid>
                 <Grid item xs={3} md={3} lg={3}>
                   <small>{lang("cars.entity.board")}</small>

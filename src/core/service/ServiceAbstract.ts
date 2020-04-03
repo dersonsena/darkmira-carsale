@@ -66,6 +66,11 @@ export default abstract class ServiceAbstract {
         snapshot.docs.forEach(doc => {
           const document = doc.data();
           document.id = doc.id;
+
+          if (document.createdAt) {
+            document.createdAt = document.createdAt.toDate();
+          }
+
           data.push(document);
         });
 
@@ -91,6 +96,10 @@ export default abstract class ServiceAbstract {
       })
       .then((snapshot: any) => {
         const data = snapshot.data();
+
+        if (data.createdAt) {
+          data.createdAt = data.createdAt.toDate();
+        }
 
         data.photos.map((photo: ICarPhoto) => {
           photo.image = photo.firebaseUrl;
