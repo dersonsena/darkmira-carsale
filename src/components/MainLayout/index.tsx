@@ -6,12 +6,24 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Link from "@material-ui/core/Link";
 import Button from "@material-ui/core/Button";
-import { Link as RouteLink, Switch, Route } from "react-router-dom";
+import { Link as RouteLink, Route, Switch } from "react-router-dom";
 import styles from "./styles";
-import lang from "../../lang";
+import lang, {
+  getLocale,
+  getLocaleName,
+  LANGUAGES,
+  LOCAL_STORAGE_LANG_NAME
+} from "../../lang";
 import routes, { IRoute } from "../../routes";
 import { HOME_ROUTES } from "../../routes/home";
 import { CAR_ROUTES } from "../../routes/cars";
+import "react-image-lightbox/style.css";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
+import TranslateIcon from "@material-ui/icons/Translate";
+import DriveEtaIcon from "@material-ui/icons/DriveEta";
+import SettingsIcon from "@material-ui/icons/Settings";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 const Copyright = () => {
   return (
@@ -32,18 +44,81 @@ const Copyright = () => {
 const MainLayout = () => {
   const classes = styles();
 
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleSelectIdiom = (e: React.MouseEvent, language: LANGUAGES) => {
+    window.localStorage.setItem(LOCAL_STORAGE_LANG_NAME, language);
+    setAnchorEl(null);
+    window.location.reload();
+  };
+
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="static">
+      <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
             {lang("general.appName")}
           </Typography>
-          <Button color="inherit" component={RouteLink} to={HOME_ROUTES.INDEX}>
+          <Button
+            aria-controls="simple-menu"
+            aria-haspopup="true"
+            color="inherit"
+            startIcon={<TranslateIcon />}
+            endIcon={<ExpandMoreIcon />}
+            onClick={handleClick}
+          >
+            {getLocaleName()}
+          </Button>
+          <Menu
+            id="simple-menu"
+            anchorEl={anchorEl}
+            keepMounted
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
+          >
+            <MenuItem key={1} disabled>
+              &gt; {lang("general.selectLanguageText")}
+            </MenuItem>
+            {getLocale() !== LANGUAGES.EN && (
+              <MenuItem
+                key={2}
+                onClick={e => handleSelectIdiom(e, LANGUAGES.EN)}
+              >
+                {getLocaleName(LANGUAGES.EN)}
+              </MenuItem>
+            )}
+            {getLocale() !== LANGUAGES.PT_BR && (
+              <MenuItem
+                key={3}
+                onClick={e => handleSelectIdiom(e, LANGUAGES.PT_BR)}
+              >
+                {getLocaleName(LANGUAGES.PT_BR)}
+              </MenuItem>
+            )}
+          </Menu>
+          <Button
+            color="inherit"
+            startIcon={<DriveEtaIcon />}
+            component={RouteLink}
+            to={HOME_ROUTES.INDEX}
+          >
             {lang("general.offerMenu")}
           </Button>
-          <Button color="inherit" component={RouteLink} to={CAR_ROUTES.INDEX}>
+          <Button
+            color="inherit"
+            startIcon={<SettingsIcon />}
+            component={RouteLink}
+            to={CAR_ROUTES.INDEX}
+          >
             {lang("general.adminMenu")}
           </Button>
         </Toolbar>

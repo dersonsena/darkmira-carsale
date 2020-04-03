@@ -18,6 +18,13 @@ export default makeStyles(theme => ({
     flexDirection: "column",
     padding: theme.spacing(3)
   },
+  createdAt: {
+    color: "#999",
+    marginLeft: 10,
+    marginBottom: 12,
+    paddingBottom: 10,
+    borderBottom: "1px solid #eee"
+  },
   addButon: {
     marginTop: theme.spacing(3)
   },

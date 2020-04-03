@@ -17,7 +17,9 @@ const initialFields: ICar = {
   photos: [],
   price: "",
   slug: "",
-  year: ""
+  year: "",
+  views: 0,
+  activated: true
 };
 
-export default Object.freeze(initialFields);
+export default initialFields;

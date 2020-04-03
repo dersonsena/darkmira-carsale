@@ -17,7 +17,7 @@ import ICity from "../../../domains/city/ICity";
 import IModel from "../../../domains/model/IModel";
 import ICar, { ICarPhoto } from "../../../domains/car/ICar";
 import { slug } from "../../../core/utils";
-import CarForm from "./CarForm";
+import CarForm from "./components/CarForm";
 import CarValidators from "../../../domains/car/CarValidator";
 import lang from "../../../lang";
 
@@ -35,6 +35,8 @@ const FormPage = (props: any) => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    initialFields.photos = [];
+
     const promises = [
       BrandService.build().getAllByCollection(),
       CityService.build().getAllByCollection(),
@@ -69,7 +71,10 @@ const FormPage = (props: any) => {
 
         // @ts-ignore
         setModels(car.brand.models);
-        setFields(car);
+        setFields({
+          ...initialFields,
+          ...car
+        });
 
         return true;
       })
@@ -95,6 +100,10 @@ const FormPage = (props: any) => {
 
     if (type === "number") {
       value = parseInt(value, 10);
+    }
+
+    if (name === "activated") {
+      value = event.target.checked;
     }
 
     setFields({ ...fields, [name]: value });
@@ -161,6 +170,7 @@ const FormPage = (props: any) => {
       return;
     }
 
+    initialFields.photos = [];
     setLoading(true);
 
     const promises: any[] = [];

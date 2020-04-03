@@ -14,14 +14,33 @@ export default {
     removeTooltipLabel: "Remover este registro",
     confirmDeleteMessage: "Deseja realmente remover esta oferta?",
     yes: "Sim",
-    no: "Não"
+    no: "Não",
+    selectLanguageText: "Selecione um Idioma"
+  },
+  languages: {
+    en: "Inglês",
+    ptBr: "Português (BR)"
   },
   admin: {
     title: "Administração"
   },
   home: {
     title: "Ofertas",
-    detailsTitle: "Detalhes Oferta"
+    detailsTitle: "Detalhes Oferta",
+    brandTitle: "Marca que trabalhamos",
+    featuredOffersTitle: "Ofertas em destaque",
+    tooltipListText: "Alterar para visualização em Lista",
+    tooltipGridText: "Alterar para visualização em Grade"
+  },
+  details: {
+    formTitle: "Gostou desse carro? Envie uma mensagem ao vendedor",
+    nameFieldLabel: "Seu nome:",
+    emailFieldLabel: "Seu e-mail:",
+    phoneFieldLabel: "Seu telefone:",
+    messageFieldLabel: "Mensagem",
+    messageFieldValue:
+      "Olá, tenho interesse nesse veículo. Por favor entre em contato comigo para negociarmos.",
+    btnSend: "Enviar"
   },
   cars: {
     title: "Ofertas de Carros",
@@ -36,7 +55,10 @@ export default {
       mileage: "Quilometragem",
       price: "Preço",
       city: "Cidade",
-      board: "Placa"
+      board: "Placa",
+      views: "Visualizações",
+      activated: "Oferta ativa",
+      createdAt: "Cadastrado em"
     },
     form: {
       successMessage: "A oferta de carro foi salva com sucesso",

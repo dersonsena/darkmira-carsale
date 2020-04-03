@@ -6,13 +6,7 @@ export const muiDatatablesColumns: MUIDataTableColumnDef[] = [
     label: "",
     name: "id",
     options: {
-      display: "false"
-    }
-  },
-  {
-    label: lang("cars.entity.model"),
-    name: "model.name",
-    options: {
+      display: "false",
       filter: false,
       sort: true
     }
@@ -34,6 +28,14 @@ export const muiDatatablesColumns: MUIDataTableColumnDef[] = [
     }
   },
   {
+    label: lang("cars.entity.model"),
+    name: "model.name",
+    options: {
+      filter: false,
+      sort: true
+    }
+  },
+  {
     label: lang("cars.entity.year"),
     name: "year",
     options: {
@@ -51,4 +53,6 @@ export const muiDatatablesColumns: MUIDataTableColumnDef[] = [
   }
 ];
 
-export const muiDatatablesOptions: MUIDataTableOptions = {};
+export const muiDatatablesOptions: MUIDataTableOptions = {
+  selectableRows: "none"
+};

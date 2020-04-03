@@ -14,14 +14,33 @@ export default {
     removeTooltipLabel: "Remove this record",
     confirmDeleteMessage: "Do you really want to remove this offer?",
     yes: "Yes",
-    no: "No"
+    no: "No",
+    selectLanguageText: "Select a idiom"
+  },
+  languages: {
+    en: "English",
+    ptBr: "Portuguese (BR)"
   },
   admin: {
     title: "Administration"
   },
   home: {
     title: "Offers",
-    detailsTitle: "Offer Detail"
+    detailsTitle: "Offer Detail",
+    brandTitle: "Brand we work for",
+    featuredOffersTitle: "Featured Offers",
+    tooltipListText: "Change to List view",
+    tooltipGridText: "Change to Grid view"
+  },
+  details: {
+    formTitle: "Did you like this car? Send a message to the seller",
+    nameFieldLabel: "Your name:",
+    emailFieldLabel: "Your email:",
+    phoneFieldLabel: "Your phone:",
+    messageFieldLabel: "Message",
+    messageFieldValue:
+      "Hi, I'm interested in this vehicle. Please contact me to negotiate.",
+    btnSend: "Send"
   },
   cars: {
     title: "Car Offers",
@@ -36,7 +55,10 @@ export default {
       mileage: "Mileage",
       price: "Price",
       city: "City",
-      board: "Board"
+      board: "Board",
+      views: "Views",
+      activated: "Active offer",
+      createdAt: "Registration date"
     },
     form: {
       successMessage: "The car offer was successfully saved",
