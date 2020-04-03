@@ -5,7 +5,7 @@ import DetailPage from "../pages/home/details/DetailsPage";
 
 export enum HOME_ROUTES {
   INDEX = "/home",
-  DETAILS = "/offer/:brand/:model/:year/:description"
+  DETAILS = "/offer/:brand/:model/:year/:description/:id"
 }
 
 const routes: IRoute[] = [
