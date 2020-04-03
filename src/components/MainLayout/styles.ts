@@ -10,6 +10,7 @@ export default makeStyles(theme => ({
     zIndex: 1
   },
   main: {
+    marginTop: theme.spacing(8),
     marginBottom: theme.spacing(2)
   },
   footer: {
