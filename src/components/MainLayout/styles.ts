@@ -7,7 +7,7 @@ export default makeStyles(theme => ({
     minHeight: "100vh"
   },
   appBar: {
-    zIndex: 1
+    zIndex: 115
   },
   main: {
     marginTop: theme.spacing(8),
