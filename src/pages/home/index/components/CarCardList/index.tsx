@@ -9,6 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import { currencyFormat } from "../../../../../core/utils";
+import lang from "../../../../../lang";
 
 interface IProps {
   car: ICar;
@@ -50,14 +51,14 @@ const CarCardList: FC<IProps> = (props: IProps) => {
                 display="block"
                 className={classes.detailsLabel}
               >
-                Ano <strong>{car.year}</strong>
+                {lang("cars.entity.year")} <strong>{car.year}</strong>
               </Typography>
               <Typography
                 variant="overline"
                 display="block"
                 className={classes.detailsLabel}
               >
-                Quilometragem{" "}
+                {lang("cars.entity.mileage")}{" "}
                 <strong>{currencyFormat(car.mileage, 0)} KM</strong>
               </Typography>
             </div>

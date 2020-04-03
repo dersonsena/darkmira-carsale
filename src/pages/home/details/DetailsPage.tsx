@@ -143,7 +143,7 @@ const DetailsPage = (props: any) => {
                   </Typography>
                 </Grid>
                 <Grid item xs={4} sm={4} md={4} lg={4}>
-                  <small>Visualizações</small>
+                  <small>{lang("cars.entity.views")}</small>
                   <Typography variant="h6" className={classes.detailValues}>
                     110
                   </Typography>
@@ -210,18 +210,18 @@ const DetailsPage = (props: any) => {
               R$ {currencyFormat(car.price, 0)}
             </Typography>
             <Typography variant="body2" gutterBottom>
-              Gosto desse carro? Envie uma mensagem ao vendedor
+              {lang("details.formTitle")}
             </Typography>
             <form noValidate autoComplete="off">
               <TextField
-                label="Seu nome:"
+                label={lang("details.nameFieldLabel")}
                 variant="outlined"
                 fullWidth
                 required
                 style={{ marginBottom: 15 }}
               />
               <TextField
-                label="Seu e-mail:"
+                label={lang("details.emailFieldLabel")}
                 placeholder="user@domail.com.br"
                 variant="outlined"
                 fullWidth
@@ -229,7 +229,7 @@ const DetailsPage = (props: any) => {
                 style={{ marginBottom: 15 }}
               />
               <TextField
-                label="Seu telefone:"
+                label={lang("details.phoneFieldLabel")}
                 placeholder="(99) 9.9999-9999"
                 variant="outlined"
                 fullWidth
@@ -237,8 +237,8 @@ const DetailsPage = (props: any) => {
                 style={{ marginBottom: 15 }}
               />
               <TextField
-                label="Seu telefone:"
-                defaultValue={`Olá, tenho interesse nesse veículo. Por favor entre em contato comigo para negociarmos.`}
+                label={lang("details.messageFieldLabel")}
+                defaultValue={lang("details.messageFieldValue")}
                 variant="outlined"
                 multiline
                 fullWidth
@@ -253,7 +253,7 @@ const DetailsPage = (props: any) => {
                 size="large"
                 endIcon={<Icon>send</Icon>}
               >
-                Enviar
+                {lang("details.btnSend")}
               </Button>
             </form>
           </Paper>
