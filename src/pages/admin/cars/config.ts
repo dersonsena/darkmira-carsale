@@ -6,7 +6,9 @@ export const muiDatatablesColumns: MUIDataTableColumnDef[] = [
     label: "",
     name: "id",
     options: {
-      display: "false"
+      display: "false",
+      filter: false,
+      sort: true
     }
   },
   {
