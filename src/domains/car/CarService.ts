@@ -1,6 +1,5 @@
 import ServiceAbstract from "../../core/service/ServiceAbstract";
 import { ICarPhoto } from "./ICar";
-import { IQueryOptions, ORDER_DIRECTIONS } from "../../core/service/Contratcs";
 
 export default class CarService extends ServiceAbstract {
   protected collectionName: string = "cars";
