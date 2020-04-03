@@ -15,6 +15,8 @@ import IModel from "../../../../domains/model/IModel";
 import ICity from "../../../../domains/city/ICity";
 import CarGallery from "../../../../domains/car/components/CarGallery";
 import lang from "../../../../lang";
+import { timestampToDateString } from "../../../../core/utils";
+import Typography from "@material-ui/core/Typography";
 
 interface IProps {
   fields: ICar;
@@ -51,6 +53,12 @@ const CarForm: FC<IProps> = (props: IProps) => {
 
   return (
     <form onSubmit={onSubmit} noValidate>
+      {fields.id !== "" && (
+        <Typography variant="body2" className={classes.createdAt} gutterBottom>
+          Oferta cadastrada dia{" "}
+          <strong>{timestampToDateString(fields.createdAt.getTime())}</strong>
+        </Typography>
+      )}
       <div className={classes.formContainer}>
         <TextField
           label={lang("cars.entity.description")}

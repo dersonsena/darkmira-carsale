@@ -57,7 +57,8 @@ export default {
       city: "Cidade",
       board: "Placa",
       views: "Visualizações",
-      activated: "Oferta ativa"
+      activated: "Oferta ativa",
+      createdAt: "Cadastrado em"
     },
     form: {
       successMessage: "A oferta de carro foi salva com sucesso",

@@ -25,7 +25,9 @@ export default makeStyles((theme: Theme) => ({
   description: {
     color: "#6E6E7C",
     letterSpacing: -0.5,
-    textTransform: "uppercase"
+    textTransform: "uppercase",
+    fontSize: 15,
+    fontWeight: "normal"
   },
   carDetails: {
     marginTop: theme.spacing(5)

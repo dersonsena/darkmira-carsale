@@ -57,7 +57,8 @@ export default {
       city: "City",
       board: "Board",
       views: "Views",
-      activated: "Active offer"
+      activated: "Active offer",
+      createdAt: "Registration date"
     },
     form: {
       successMessage: "The car offer was successfully saved",

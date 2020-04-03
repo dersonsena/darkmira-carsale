@@ -37,3 +37,16 @@ export const currencyFormat = (num: any, decimals: number = 2) => {
     .toFixed(decimals)
     .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
 };
+
+export const timestampToDateString = (timestamp: any): string => {
+  const dateObject = new Date(timestamp);
+  const date = dateObject.getDate();
+  const month = dateObject.getMonth();
+  const year = dateObject.getFullYear();
+
+  return `${pad(date)}/${pad(month + 1)}/${year}`;
+};
+
+export const pad = (number: number): string => {
+  return number < 10 ? `0${number}` : number.toString();
+};

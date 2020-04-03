@@ -15,7 +15,7 @@ import ICar from "../../../domains/car/ICar";
 import initialFields from "./fields";
 import CarGallery from "../../../domains/car/components/CarGallery";
 import lang from "../../../lang";
-import { currencyFormat } from "../../../core/utils";
+import { currencyFormat, timestampToDateString } from "../../../core/utils";
 
 const DetailPage = (props: any) => {
   const classes = styles();
@@ -61,7 +61,10 @@ const DetailPage = (props: any) => {
                 variant="subtitle1"
                 gutterBottom
               >
-                {car.description}
+                {!loading &&
+                  `${car.description} | ${lang(
+                    "cars.entity.createdAt"
+                  )}: ${timestampToDateString(car.createdAt.getTime())}`}
               </Typography>
             </header>
             <Divider light={true} />

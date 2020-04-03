@@ -30,6 +30,7 @@ export default class CarService extends ServiceAbstract {
         snapshot.docs.forEach(doc => {
           const document = doc.data();
           document.id = doc.id;
+          document.createdAt = document.createdAt.toDate();
           data.push(document);
         });
 
