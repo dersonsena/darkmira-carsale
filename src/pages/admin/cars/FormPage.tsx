@@ -69,7 +69,10 @@ const FormPage = (props: any) => {
 
         // @ts-ignore
         setModels(car.brand.models);
-        setFields(car);
+        setFields({
+          ...initialFields,
+          ...car
+        });
 
         return true;
       })
@@ -95,6 +98,10 @@ const FormPage = (props: any) => {
 
     if (type === "number") {
       value = parseInt(value, 10);
+    }
+
+    if (name === "activated") {
+      value = event.target.checked;
     }
 
     setFields({ ...fields, [name]: value });

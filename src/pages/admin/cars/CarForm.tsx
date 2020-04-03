@@ -3,6 +3,9 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
 import SaveIcon from "@material-ui/icons/Save";
+import FormGroup from "@material-ui/core/FormGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
 import { Input, Grid } from "@material-ui/core";
 import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
 import ICar from "../../../domains/car/ICar";
@@ -212,6 +215,22 @@ const CarForm: FC<IProps> = (props: IProps) => {
       </div>
       <div>
         <Grid container spacing={2}>
+          <Grid item xs={12} md={12} lg={12}>
+            <FormGroup row>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={fields.activated}
+                    onChange={onChange}
+                    name="activated"
+                    color="primary"
+                  />
+                }
+                style={{ marginLeft: 1 }}
+                label={lang("cars.entity.activated")}
+              />
+            </FormGroup>
+          </Grid>
           <Grid item xs={12} md={12} lg={12}>
             <Button
               style={{ margin: 10 }}

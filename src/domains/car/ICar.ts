@@ -26,4 +26,6 @@ export default interface ICar {
   slug: string;
   year: string | number;
   photos: ICarPhoto[];
+  views: number;
+  activated: boolean;
 }

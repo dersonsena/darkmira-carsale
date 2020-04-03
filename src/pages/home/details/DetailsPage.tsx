@@ -22,6 +22,7 @@ const DetailsPage = (props: any) => {
   const classes = styles();
   const [loading, setLoading] = useState(false);
   const [car, setCar] = useState<ICar>(initialFields);
+  const [views, setViews] = useState(0);
   const [breadcrumbItems, setBreadcrumbItems] = useState<IBreadcrumbItem[]>([]);
   const [lightboxIsOpen, setLightboxIsOpen] = useState(false);
   const [currentIndexPhoto, setCurrentIndexPhoto] = useState(0);
@@ -29,10 +30,11 @@ const DetailsPage = (props: any) => {
 
   useEffect(() => {
     const carId = props.match.params.id;
+    const carService = CarService.build();
 
     setLoading(true);
 
-    CarService.build()
+    carService
       .getById(carId)
       .then(document => {
         setCar(document);
@@ -46,7 +48,10 @@ const DetailsPage = (props: any) => {
           (photo: ICarPhoto) => photo.firebaseUrl
         );
         setImageUrlList(images);
+
+        return carService.addViewToOffer(document);
       })
+      .then(totalViews => setViews(totalViews))
       .finally(() => setLoading(false));
   }, [props.match.params.id]);
 
@@ -145,7 +150,7 @@ const DetailsPage = (props: any) => {
                 <Grid item xs={4} sm={4} md={4} lg={4}>
                   <small>{lang("cars.entity.views")}</small>
                   <Typography variant="h6" className={classes.detailValues}>
-                    110
+                    {!loading ? views : <CircularProgress size={20} />}
                   </Typography>
                 </Grid>
               </Grid>

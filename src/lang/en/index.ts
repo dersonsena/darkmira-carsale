@@ -56,7 +56,8 @@ export default {
       price: "Price",
       city: "City",
       board: "Board",
-      views: "Views"
+      views: "Views",
+      activated: "Active offer"
     },
     form: {
       successMessage: "The car offer was successfully saved",
