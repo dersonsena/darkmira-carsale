@@ -22,4 +22,4 @@ const initialFields: ICar = {
   activated: true
 };
 
-export default initialFields;
+export default (): ICar => initialFields;
