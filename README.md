@@ -14,13 +14,14 @@ In this project you will be able to run an online car sales shop, using [React](
 
 ## Admin
 
-![HomePage1](/docs/screenshot-3.png)]
+![HomePage1](/docs/screenshot-3.png)
 
 ### Internacionalization
 
 I developed an internationalization layer in the project to improve the UX of foreign users. The way it was designed, it is very easy to add new languages for application.
 
 ![GitFlow](/docs/screenshot-5.png)
+
 ![GitFlow](/docs/screenshot-6.png)
 
 ## Prerequisites
