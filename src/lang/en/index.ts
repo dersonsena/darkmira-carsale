@@ -26,7 +26,21 @@ export default {
   },
   home: {
     title: "Offers",
-    detailsTitle: "Offer Detail"
+    detailsTitle: "Offer Detail",
+    brandTitle: "Brand we work for",
+    featuredOffersTitle: "Featured Offers",
+    tooltipListText: "Change to List view",
+    tooltipGridText: "Change to Grid view"
+  },
+  details: {
+    formTitle: "Did you like this car? Send a message to the seller",
+    nameFieldLabel: "Your name:",
+    emailFieldLabel: "Your email:",
+    phoneFieldLabel: "Your phone:",
+    messageFieldLabel: "Message",
+    messageFieldValue:
+      "Hi, I'm interested in this vehicle. Please contact me to negotiate.",
+    btnSend: "Send"
   },
   cars: {
     title: "Car Offers",
@@ -41,7 +55,8 @@ export default {
       mileage: "Mileage",
       price: "Price",
       city: "City",
-      board: "Board"
+      board: "Board",
+      views: "Views"
     },
     form: {
       successMessage: "The car offer was successfully saved",

@@ -11,6 +11,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 import CarCardList from "../CarCardList";
 import { HOME_ROUTES } from "../../../../../routes/home";
 import FakeCarCard from "../FakeCarCard";
+import lang from "../../../../../lang";
 
 export enum VIEW_MODE {
   GRID = "grid",
@@ -74,18 +75,18 @@ const FeaturedOffers: FC<IProps> = (props: IProps) => {
             className={classes.sectionTitle}
             gutterBottom
           >
-            Ofertas em Destaque
+            {lang("home.featuredOffersTitle")}
           </Typography>
           <IconButton
             aria-label="toggleViewMode"
             onClick={handleClickToggleViewMode}
           >
             {viewMode === VIEW_MODE.GRID ? (
-              <Tooltip title="Alterar para visualização em Lista">
+              <Tooltip title={lang("home.tooltipListText")}>
                 <ListIcon />
               </Tooltip>
             ) : (
-              <Tooltip title="Alterar para visualização em Grade">
+              <Tooltip title={lang("home.tooltipGridText")}>
                 <GridOnIcon />
               </Tooltip>
             )}
