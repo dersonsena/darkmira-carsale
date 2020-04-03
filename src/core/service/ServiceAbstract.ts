@@ -15,7 +15,7 @@ export default abstract class ServiceAbstract {
     this.storage = storage;
   }
 
-  getfirestore(): firebase.firestore.Firestore {
+  getFirestore(): firebase.firestore.Firestore {
     return this.firestore;
   }
 

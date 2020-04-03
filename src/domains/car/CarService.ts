@@ -1,5 +1,5 @@
 import ServiceAbstract from "../../core/service/ServiceAbstract";
-import { ICarPhoto } from "./ICar";
+import ICar, { ICarPhoto } from "./ICar";
 
 export default class CarService extends ServiceAbstract {
   protected collectionName: string = "cars";
@@ -20,9 +20,9 @@ export default class CarService extends ServiceAbstract {
   }
 
   async getFeaturedOffers() {
-    return this.getfirestore()
+    return this.getFirestore()
       .collection(this.collectionName)
-      .orderBy("description", "asc")
+      .orderBy("views", "desc")
       .get()
       .then(snapshot => {
         const data: object[] = [];
@@ -35,5 +35,16 @@ export default class CarService extends ServiceAbstract {
 
         return data;
       });
+  }
+
+  async addViewToOffer(car: ICar) {
+    const views = car.views + 1;
+    const data = { ...car, views };
+
+    return this.getFirestore()
+      .collection(this.collectionName)
+      .doc(car.id.toString())
+      .update(data)
+      .then(() => views);
   }
 }

@@ -77,7 +77,7 @@ const CarCardList: FC<IProps> = (props: IProps) => {
                 className={classes.footerItems}
               >
                 <VisibilityIcon color="action" fontSize="small" />
-                <span className={classes.views}>103</span>
+                <span className={classes.views}> {car.views}</span>
               </Typography>
             </div>
           </div>
