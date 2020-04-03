@@ -8,13 +8,13 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import { Input, Grid } from "@material-ui/core";
 import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
-import ICar from "../../../domains/car/ICar";
-import IBrand from "../../../domains/brand/IBrand";
-import IColor from "../../../domains/color/IColor";
-import IModel from "../../../domains/model/IModel";
-import ICity from "../../../domains/city/ICity";
-import CarGallery from "../../../domains/car/components/CarGallery";
-import lang from "../../../lang";
+import ICar from "../../../../domains/car/ICar";
+import IBrand from "../../../../domains/brand/IBrand";
+import IColor from "../../../../domains/color/IColor";
+import IModel from "../../../../domains/model/IModel";
+import ICity from "../../../../domains/city/ICity";
+import CarGallery from "../../../../domains/car/components/CarGallery";
+import lang from "../../../../lang";
 
 interface IProps {
   fields: ICar;
