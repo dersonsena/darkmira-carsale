@@ -1,8 +1,8 @@
 # Darkmira Challenge - React JS Position
 
-Made by: Kilderson Sena ([@dersonsena](https://github.com/dersonsena))
+Developed by: Kilderson Sena ([@dersonsena](https://github.com/dersonsena))
 
-In this project you will be able to run an online car sales shop, using [React](https://reactjs.org) + [Material UI](https://material-ui.com) to build the entire frontend and all storage made by [Firebase](https://firebase.google.com) with Firestore.
+In this project you'll be able to run an online car sales shop, using [React](https://reactjs.org) + [Material UI](https://material-ui.com) to build the entire frontend and all storage made by [Firebase](https://firebase.google.com) with Firestore.
 
 ## Home Page
 
