@@ -18,6 +18,7 @@ export default class CarService extends ServiceAbstract {
   async getFeaturedOffers() {
     return this.getFirestore()
       .collection(this.collectionName)
+      .where("activated", "==", true)
       .orderBy("views", "desc")
       .get()
       .then(snapshot => {
