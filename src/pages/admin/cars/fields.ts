@@ -22,4 +22,4 @@ const initialFields: ICar = {
   activated: true
 };
 
-export default Object.freeze(initialFields);
+export default initialFields;
