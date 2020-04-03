@@ -21,6 +21,9 @@ import "react-image-lightbox/style.css";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import TranslateIcon from "@material-ui/icons/Translate";
+import DriveEtaIcon from "@material-ui/icons/DriveEta";
+import SettingsIcon from "@material-ui/icons/Settings";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 const Copyright = () => {
   return (
@@ -70,6 +73,7 @@ const MainLayout = () => {
             aria-haspopup="true"
             color="inherit"
             startIcon={<TranslateIcon />}
+            endIcon={<ExpandMoreIcon />}
             onClick={handleClick}
           >
             {getLocaleName()}
@@ -101,10 +105,20 @@ const MainLayout = () => {
               </MenuItem>
             )}
           </Menu>
-          <Button color="inherit" component={RouteLink} to={HOME_ROUTES.INDEX}>
+          <Button
+            color="inherit"
+            startIcon={<DriveEtaIcon />}
+            component={RouteLink}
+            to={HOME_ROUTES.INDEX}
+          >
             {lang("general.offerMenu")}
           </Button>
-          <Button color="inherit" component={RouteLink} to={CAR_ROUTES.INDEX}>
+          <Button
+            color="inherit"
+            startIcon={<SettingsIcon />}
+            component={RouteLink}
+            to={CAR_ROUTES.INDEX}
+          >
             {lang("general.adminMenu")}
           </Button>
         </Toolbar>
