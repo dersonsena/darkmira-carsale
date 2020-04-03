@@ -12,14 +12,6 @@ export const muiDatatablesColumns: MUIDataTableColumnDef[] = [
     }
   },
   {
-    label: lang("cars.entity.model"),
-    name: "model.name",
-    options: {
-      filter: false,
-      sort: true
-    }
-  },
-  {
     label: lang("cars.entity.description"),
     name: "description",
     options: {
@@ -32,6 +24,14 @@ export const muiDatatablesColumns: MUIDataTableColumnDef[] = [
     name: "brand.name",
     options: {
       filter: true,
+      sort: true
+    }
+  },
+  {
+    label: lang("cars.entity.model"),
+    name: "model.name",
+    options: {
+      filter: false,
       sort: true
     }
   },
@@ -53,4 +53,6 @@ export const muiDatatablesColumns: MUIDataTableColumnDef[] = [
   }
 ];
 
-export const muiDatatablesOptions: MUIDataTableOptions = {};
+export const muiDatatablesOptions: MUIDataTableOptions = {
+  selectableRows: "none"
+};
