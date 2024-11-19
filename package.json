@@ -10,7 +10,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "clsx": "^1.1.0",
-    "firebase": "^7.13.0",
+    "firebase": "^10.9.0",
     "material-ui-image": "^3.2.3",
     "mui-datatables": "^2.14.0",
     "react": "^16.13.1",
